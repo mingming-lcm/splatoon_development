@@ -6,9 +6,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Result;
 use App\Models\IksmSession;
 
-class RecordController extends Controller
+class SummaryController extends Controller
 {
     public function index(){
     	
@@ -23,12 +25,11 @@ class RecordController extends Controller
 
 		// $data = $this->squidFishing("https://app.splatoon2.nintendo.net/api/results/19465");
 
-$helper = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/result/");
-dd($helper);
+$data = Result::first();
 
 
 
-    	return view('record')->with(['data'=>$data]);
+    	return view('summary')->with(['data'=>$data]);
     }
 
 

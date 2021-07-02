@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Map;
+use App\Models\IksmSession;
 
 
 class TimetableController extends Controller
@@ -25,7 +26,7 @@ class TimetableController extends Controller
 		//api links https://app.splatoon2.nintendo.net/api/results
 
 
-		$data = $this->squidFishing("https://app.splatoon2.nintendo.net/api/schedules");
+		$data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/schedules");
 
 		$modes_translate = [
 			"gachi"=>[
@@ -77,24 +78,5 @@ class TimetableController extends Controller
 
     	return view('timetable')->with(['data'=>$data,'modes_translate'=>$modes_translate,'rank_modes_translate'=>$rank_modes_translate,'maps'=>$maps]);
     }
-
-
-	function squidFishing($url){
-	    $iksm = "1ebf39b6f941f0f9504fa1853e991c08451e46e0";
-	    $header = array(
-	        "Cookie: iksm_session=" . $iksm,
-	        "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X)  
-	                    AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-	    );
-	    $context = array(
-	        "http" => array(
-	            "method" => "GET",
-	            "header" => implode("\r\n", $header)
-	        )
-	    );
-	    return json_decode(file_get_contents($url, false, stream_context_create($context)));
-	}
-
-
 
 }

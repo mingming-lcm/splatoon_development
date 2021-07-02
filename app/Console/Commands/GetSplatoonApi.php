@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\IksmSession;
 use App\Models\Result;
 use App\Models\TeammatesResult;
 
@@ -50,7 +51,7 @@ class GetSplatoonApi extends Command
         //api links https://app.splatoon2.nintendo.net/api/results
 
 
-        $data = $this->squidFishing("https://app.splatoon2.nintendo.net/api/results");
+        $data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results");
 
         foreach ($data->results as $key => $value) {
             if(Result::getResultByBattleNumber($value->battle_number)){
@@ -97,7 +98,7 @@ class GetSplatoonApi extends Command
             
             $result->save();
 
-            $teammates_data = $this->squidFishing("https://app.splatoon2.nintendo.net/api/results/".$value->battle_number);
+            $teammates_data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results/".$value->battle_number);
 
             $teammates_result = new TeammatesResult();
             $teammates_result->result_id = "";
@@ -145,21 +146,4 @@ class GetSplatoonApi extends Command
 
     }
 
-
-
-    function squidFishing($url){
-        $iksm = "1ebf39b6f941f0f9504fa1853e991c08451e46e0";
-        $header = array(
-            "Cookie: iksm_session=" . $iksm,
-            "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X)  
-                        AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-        );
-        $context = array(
-            "http" => array(
-                "method" => "GET",
-                "header" => implode("\r\n", $header)
-            )
-        );
-        return json_decode(file_get_contents($url, false, stream_context_create($context)));
-    }
 }

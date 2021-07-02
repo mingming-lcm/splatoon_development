@@ -51,20 +51,75 @@ class GetIksm extends Command
 
         // $data = $this->squidFishing("https://app.splatoon2.nintendo.net/api/results");
 
-        $session_token_code_verifier = $this->urlsafe_b64encode(random_bytes(32));
+        $result = json_decode($this->getSessionTokenCode());
 
-        $session_token_code = $this->urlsafe_b64encode(hex2bin(hash("sha256", $session_token_code_verifier)));
 
-        dump($session_token_code_verifier);
-        dump($session_token_code);
+        $session_token_code_verifier = $result->auth_code_verifier;
+
+        // $session_token_code = $this->urlsafe_b64encode(hex2bin(hash("sha256", $session_token_code_verifier)));
+
+
+        dump($result);
+
+        $parts = explode("&",parse_url($result->auth_url)['query']);
+
+        $session_token_code = $this->editQuery("session_token_code_challenge", parse_url($result->auth_url)['query']);
+
+
+
         dump($this->getSessionToken($session_token_code, $session_token_code_verifier));
 
         // $iksm = new IksmSession();
         // $iksm->iksm_session = "2e2f21a7f198cb6a25e790d86220bb819a3b8405";
         // $iksm->user_agent = "hello_testing_again";
         // $iksm->save();
+    }
 
+    public function editQuery($get,$query){
+        $parts = explode("&",$query);
+        $return = "";
+        foreach($parts as $p){
+            $paramData = explode("=",$p);
+            if($paramData[0] == $get){
+                $return = $paramData[1];
+            }
+            
+           
+        }
+       
+       dump($return);
+        return $return;
+    }
 
+    function getSessionTokenCode()
+    {
+        $auth_state = $this->urlsafe_b64encode(random_bytes(36));
+// $auth_state = "L5bjEkl1rgC4ASIK8ut2LRQL84zEpg-MMxZrPMoQMwyW_qnM";
+$auth_code_verifier = $this->urlsafe_b64encode(random_bytes(32));
+// $auth_code_verifier = "Cor2PmOlGq1trB3uqWouVG7QPQHprPTGVhGRbTF-9DU";
+$auth_cv_hash = hash("sha256", $auth_code_verifier);
+$auth_code_challenge = $this->urlsafe_b64encode(hex2bin($auth_cv_hash));
+// $auth_code_challenge = "ZYVT7hgxHpTgmJy4nM9yTbF5tMJPJY2zkJQidXegAdk";
+
+$base_url = "https://accounts.nintendo.com/connect/1.0.0/authorize?";
+
+$param = array( 
+    "state" => $auth_state,
+    "redirect_uri" => "npf71b963c1b7b6d119://auth",
+    "client_id" => "71b963c1b7b6d119",
+    "scope" => "openid user user.birthday user.mii user.screenName",
+    "response_type" => "session_token_code",
+    "session_token_code_challenge" => $auth_code_challenge,
+    "session_token_code_challenge_method" => "S256",
+    "theme" => "login_form"
+);
+$auth_url = $base_url . http_build_query($param);
+$response = array(
+    "auth_code_verifier" => $auth_code_verifier,
+    "auth_url" => $auth_url);
+
+header('content-type: application/json; charset=utf-8');
+return(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
 
 
@@ -405,7 +460,7 @@ class GetIksm extends Command
 
     function squidFishing($url)
     {
-        $iksm = "2e2f21a7f198cb6a25e790d86220bb819a3b8405";
+        $iksm = "8a615c6a18a7067d739cb5c8a2932142f563daa0";
         $header = array(
             "Cookie: iksm_session=" . $iksm,
             "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X)  

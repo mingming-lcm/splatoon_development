@@ -25,7 +25,7 @@ class HomeController extends Controller
     	return view('pages.update_iksm');
     }
 
-    public function update_iksm(Request $request)
+    public function get_iksm(Request $request)
     {
     	$url = $request->input('url');
     	$session_token_code_verifier = $request->input('session_token_code_verifier');
@@ -41,7 +41,7 @@ class HomeController extends Controller
     	$iksm = $this->getIksmSession($splatoon_access_token);
     	// $access_token = $this->callS2SAPI($access_token, time());
     	dd($iksm);
-    	return view('pages.update_iksm');
+    	return view('pages.get_iksm');
     }
 
     public function editQuery($get,$query){

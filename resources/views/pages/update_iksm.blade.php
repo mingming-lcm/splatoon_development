@@ -27,7 +27,7 @@
 
         <div class="col-xs-12"><a href="<?=$result->auth_url;?>" target="_blank"><?=$result->auth_url;?></a></div>
 
-        <form action="update" method="get">
+        <form action="get_iksm" method="get">
             <input type="test" name="url"/>
             <input type="hidden" name="session_token_code_verifier" value="<?=$session_token_code_verifier;?>" />
             <button type="submit">Update</button>

@@ -20,7 +20,7 @@ class HomeController extends Controller
     	//return view('home')->with(['withBanner' => true, 'categories' => $categories,'default_trending_category' => $default_trending_category, 'categoryProducts' => $categoryProducts, 'pickupProducts' => $pickupProducts, 'about_kitco' => $about_kitco, 'first_time_enter' => $first_time_enter]);
     }
 
-    public function update_iksm_form()
+    public function update_iksm()
     {
     	return view('pages.update_iksm');
     }

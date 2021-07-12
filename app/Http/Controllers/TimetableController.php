@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Map;
 use App\Models\IksmSession;
+use App\Models\Schedule;
 
 
 class TimetableController extends Controller
@@ -75,6 +76,7 @@ class TimetableController extends Controller
 			$maps[$key]['image'] = $value->image_path;
 		}
 
+		$schedules = Schedule::getSchedule();
 
     	return view('timetable')->with(['data'=>$data,'modes_translate'=>$modes_translate,'rank_modes_translate'=>$rank_modes_translate,'maps'=>$maps]);
     }

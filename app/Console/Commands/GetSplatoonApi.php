@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\IksmSession;
+use App\Models\Map;
 use App\Models\Result;
+use App\Models\Schedule;
 use App\Models\TeammatesResult;
 
 class GetSplatoonApi extends Command
@@ -51,9 +53,9 @@ class GetSplatoonApi extends Command
         //api links https://app.splatoon2.nintendo.net/api/results
 
 
-        $data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results");
+        $results = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results");
 
-        foreach ($data->results as $key => $value) {
+        foreach ($results->results as $key => $value) {
             if(Result::getResultByBattleNumber($value->battle_number)){
                 continue;
             }            
@@ -98,52 +100,63 @@ class GetSplatoonApi extends Command
             
             $result->save();
 
-            $teammates_data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results/".$value->battle_number);
+            $teammates_results = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results/".$value->battle_number);
 
             $teammates_result = new TeammatesResult();
             $teammates_result->result_id = "";
-            $teammates_result->battle_number = $teammates_data->battle_number;
+            $teammates_result->battle_number = $teammates_results->battle_number;
             $teammates_result->team = 'my_team';
-            $teammates_result->player_name = $teammates_data->player_result->player->nickname;
-            $teammates_result->kill_count = $teammates_data->player_result->kill_count;
-            $teammates_result->assist_count = $teammates_data->player_result->assist_count;
-            $teammates_result->death_count = $teammates_data->player_result->death_count;
-            $teammates_result->special_count = $teammates_data->player_result->special_count;
-            $teammates_result->game_paint_point = $teammates_data->player_result->game_paint_point;
+            $teammates_result->player_name = $teammates_results->player_result->player->nickname;
+            $teammates_result->kill_count = $teammates_results->player_result->kill_count;
+            $teammates_result->assist_count = $teammates_results->player_result->assist_count;
+            $teammates_result->death_count = $teammates_results->player_result->death_count;
+            $teammates_result->special_count = $teammates_results->player_result->special_count;
+            $teammates_result->game_paint_point = $teammates_results->player_result->game_paint_point;
             $teammates_result->save();
 
 
-            for ($i=0; $i < count($teammates_data->my_team_members); $i++) { 
-                // dump($teammates_data);
+            for ($i=0; $i < count($teammates_results->my_team_members); $i++) { 
+                // dump($teammates_results);
                 $teammates_result = new TeammatesResult();
                 $teammates_result->result_id = "";
-                $teammates_result->battle_number = $teammates_data->battle_number;
+                $teammates_result->battle_number = $teammates_results->battle_number;
                 $teammates_result->team = 'my_team';
-                $teammates_result->player_name = $teammates_data->my_team_members[$i]->player->nickname;
-                $teammates_result->kill_count = $teammates_data->my_team_members[$i]->kill_count;
-                $teammates_result->assist_count = $teammates_data->my_team_members[$i]->assist_count;
-                $teammates_result->death_count = $teammates_data->my_team_members[$i]->death_count;
-                $teammates_result->special_count = $teammates_data->my_team_members[$i]->special_count;
-                $teammates_result->game_paint_point = $teammates_data->my_team_members[$i]->game_paint_point;
+                $teammates_result->player_name = $teammates_results->my_team_members[$i]->player->nickname;
+                $teammates_result->kill_count = $teammates_results->my_team_members[$i]->kill_count;
+                $teammates_result->assist_count = $teammates_results->my_team_members[$i]->assist_count;
+                $teammates_result->death_count = $teammates_results->my_team_members[$i]->death_count;
+                $teammates_result->special_count = $teammates_results->my_team_members[$i]->special_count;
+                $teammates_result->game_paint_point = $teammates_results->my_team_members[$i]->game_paint_point;
                 $teammates_result->save();
             }
 
-            for ($i=0; $i < count($teammates_data->other_team_members); $i++) { 
+            for ($i=0; $i < count($teammates_results->other_team_members); $i++) { 
                 $teammates_result = new TeammatesResult();
                 $teammates_result->result_id = "";
-                $teammates_result->battle_number = $teammates_data->battle_number;
+                $teammates_result->battle_number = $teammates_results->battle_number;
                 $teammates_result->team = 'other_team';
-                $teammates_result->player_name = $teammates_data->other_team_members[$i]->player->nickname;
-                $teammates_result->kill_count = $teammates_data->other_team_members[$i]->kill_count;
-                $teammates_result->assist_count = $teammates_data->other_team_members[$i]->assist_count;
-                $teammates_result->death_count = $teammates_data->other_team_members[$i]->death_count;
-                $teammates_result->special_count = $teammates_data->other_team_members[$i]->special_count;
-                $teammates_result->game_paint_point = $teammates_data->other_team_members[$i]->game_paint_point;
+                $teammates_result->player_name = $teammates_results->other_team_members[$i]->player->nickname;
+                $teammates_result->kill_count = $teammates_results->other_team_members[$i]->kill_count;
+                $teammates_result->assist_count = $teammates_results->other_team_members[$i]->assist_count;
+                $teammates_result->death_count = $teammates_results->other_team_members[$i]->death_count;
+                $teammates_result->special_count = $teammates_results->other_team_members[$i]->special_count;
+                $teammates_result->game_paint_point = $teammates_results->other_team_members[$i]->game_paint_point;
                 $teammates_result->save();
             }
 
         }
 
+
+        $schedules = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/schedules");
+
+
+        foreach ($schedules->results as $key => $value) {
+            $schedule = new Schedule();
+            $schedule->start_time = $value->start_time;
+            $schedule->stage_a_id = $value->stage_a_id;
+            $schedule->stage_b_id = $value->stage_b_id;
+            $schedule->save();
+        }
     }
 
 }

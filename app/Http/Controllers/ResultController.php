@@ -24,7 +24,8 @@ class ResultController extends Controller
 		//api links https://app.splatoon2.nintendo.net/api/results
 
 
-		$data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results");
+		$data = Result::getAllResults();
+		// $data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results");
 
 		$modes_translate = [
 			"gachi"=>[

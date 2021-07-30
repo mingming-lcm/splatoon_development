@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use App\Models\IksmSession;
 use App\Models\Map;
 use App\Models\Result;
-use App\Models\Schedule;
+use App\Models\Timetable;
 use App\Models\TeammatesResult;
 
 class GetSplatoonApi extends Command
@@ -148,15 +148,16 @@ class GetSplatoonApi extends Command
         }
 
 
-        $schedules = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/schedules");
+        $timetables = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/schedules");
 
 
-        foreach ($schedules->results as $key => $value) {
-            $schedule = new Schedule();
-            $schedule->start_time = $value->start_time;
-            $schedule->stage_a_id = $value->stage_a_id;
-            $schedule->stage_b_id = $value->stage_b_id;
-            $schedule->save();
+        foreach ($timetables->results as $key => $value) {
+            $timetable = new Timetable();
+            $timetable->start_time = $value->start_time;
+            $timetable->end_time = $value->end_time;
+            $timetable->stage_a_id = $value->stage_a_id;
+            $timetable->stage_b_id = $value->stage_b_id;
+            $timetable->save();
         }
     }
 

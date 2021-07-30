@@ -17,8 +17,8 @@ function modesCompare($a, $b){
 		return 1;
 	}
 }
-$data = new ArrayObject($data);
-$data->uksort("modesCompare");
+//$data = new ArrayObject($data);
+//$data->uksort("modesCompare");
 
 
 ?>
@@ -26,35 +26,35 @@ $data->uksort("modesCompare");
 	Splatoon2 時間表
 </div>
 <div class="schedules_table" id="schedules_table" >
-<?php foreach($data as $modes=>$modes_data){ ?>
+<?php foreach($modes_translate as $mode_key => $mode){ ?>
 	<!-- <div class="d-none d-lg-block"> -->
 		<div class="schedules_column">
 			<div class="schedules_mode">
-				<?=$modes_translate[$modes]['name'];?>
+				<?=$mode['name'];?>
 			</div>
-			<?php for($i=0;$i < count($modes_data);$i++){ ?>
+			<?php foreach(${$mode_key."_data"} as $key=>$slot){ ?>
 				<div class="schedules_item">
 					<div class="schedules_time">
-						<?php echo date("H:i", $modes_data[$i]->start_time);?> - <?php echo date("H:i", $modes_data[$i]->end_time);?>  
+						<?php echo date("H:i", $slot->start_time);?> - <?php echo date("H:i", $slot->end_time);?>  
 					</div>
-					<div class="schedules_rules" style="color:<?=$rank_modes_translate[$modes_data[$i]->rule->key]['color'];?>">
-						<?php echo $rank_modes_translate[$modes_data[$i]->rule->key]['name'];?>
+					<div class="schedules_rules" style="color:<?=$rank_modes_translate[$slot->rule]['color'];?>">
+						<?php echo $rank_modes_translate[$slot->rule]['name'];?>
 					</div>
 
 					<div class="schedules_maps">
 						<div class="schedules_maps_a">
-							<?php echo nl2br($maps[$modes_data[$i]->stage_a->id]['name']);?>
+							<?php echo nl2br($maps[$slot->stage_a]['name']);?>
 
 						</div>
 						<div class="schedules_maps_image">
-							<img src="{{URL::asset('/images/splatoon2')}}/<?=$maps[$modes_data[$i]->stage_a->id]['image']?>" />
+							<img src="{{URL::asset('/images/splatoon2')}}/<?=$maps[$slot->stage_a]['image']?>" />
 							
 						</div>
 						<div class="schedules_maps_b">
-							<?php echo nl2br($maps[$modes_data[$i]->stage_b->id]['name']);?>
+							<?php echo nl2br($maps[$slot->stage_b]['name']);?>
 						</div>
 						<div class="schedules_maps_image">
-							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$modes_data[$i]->stage_b->id]['image']?>" />
+							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$slot->stage_b]['image']?>" />
 
 						</div>
 					</div>
@@ -65,39 +65,39 @@ $data->uksort("modesCompare");
 
 	<!-- <div class="d-lg-none">
 	  	<div class="card">
-		    <div class="card-header" id="heading_<?=$modes;?>">
+		    <div class="card-header" id="heading_<?=$mode_key;?>">
 		      <h5 class="mb-0">
-		        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse_<?=$modes;?>" aria-expanded="true" aria-controls="collapse_<?=$modes;?>">
-		          <?=$modes_translate[$modes]['name'];?>
+		        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse_<?=$mode_key;?>" aria-expanded="true" aria-controls="collapse_<?=$mode_key;?>">
+		          <?=$mode['name'];?>
 		        </button>
 		      </h5>
 		    </div>
 
-		    <div id="collapse_<?=$modes;?>" class="collapse" aria-labelledby="heading_<?=$modes;?>" data-parent="#schedules_table">
+		    <div id="collapse_<?=$mode_key;?>" class="collapse" aria-labelledby="heading_<?=$mode_key;?>" data-parent="#schedules_table">
 			    <div class="card-body">
-			        <?php for($i=0;$i < count($modes_data);$i++){ ?>
+				<?php foreach(${$mode_key."_data"} as $key=>$slot){ ?>
 						<div class="schedules_item">
 							<div class="schedules_time">
-								<?php echo date("H:i", $modes_data[$i]->start_time);?> - <?php echo date("H:i", $modes_data[$i]->end_time);?>  
+								<?php echo date("H:i", $slot->start_time);?> - <?php echo date("H:i", $slot->end_time);?>  
 							</div>
-							<div class="schedules_rules" style="color:<?=$rank_modes_translate[$modes_data[$i]->rule->key]['color'];?>">
-								<?php echo $rank_modes_translate[$modes_data[$i]->rule->key]['name'];?>
+							<div class="schedules_rules" style="color:<?=$rank_modes_translate[$slot->rule]['color'];?>">
+								<?php echo $rank_modes_translate[$slot->rule]['name'];?>
 							</div>
 
 							<div class="schedules_maps">
 								<div class="schedules_maps_a">
-									<?php echo nl2br($maps[$modes_data[$i]->stage_a->id]['name']);?>
+									<?php echo nl2br($maps[$slot->stage_a]['name']);?>
 
 								</div>
 								<div class="schedules_maps_image">
-									<img src="{{URL::asset('/images/splatoon2')}}/<?=$maps[$modes_data[$i]->stage_a->id]['image']?>" />
+									<img src="{{URL::asset('/images/splatoon2')}}/<?=$maps[$slot->stage_a]['image']?>" />
 									
 								</div>
 								<div class="schedules_maps_b">
-									<?php echo nl2br($maps[$modes_data[$i]->stage_b->id]['name']);?>
+									<?php echo nl2br($maps[$slot->stage_b]['name']);?>
 								</div>
 								<div class="schedules_maps_image">
-									<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$modes_data[$i]->stage_b->id]['image']?>" />
+									<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$slot->stage_b]['image']?>" />
 
 								</div>
 							</div>

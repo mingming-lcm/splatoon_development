@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Map;
 use App\Models\IksmSession;
-use App\Models\Schedule;
+use App\Models\Timetable;
 
 
 class TimetableController extends Controller
@@ -27,9 +27,16 @@ class TimetableController extends Controller
 		//api links https://app.splatoon2.nintendo.net/api/results
 
 
-		$data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/schedules");
+		$gachi_data = Timetable::getGachiTimetable();
+		$league_data = Timetable::getLeagueTimetable();
+		$regular_data = Timetable::getRegularTimetable();
+		// $data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/schedules");
 
 		$modes_translate = [
+			"regular" => [
+				"name"=>"Normal（油地）",
+				"color"=>"green",
+			] ,
 			"gachi"=>[
 				"name"=>"Rank（單排）",
 				"color"=>"orange",
@@ -37,11 +44,7 @@ class TimetableController extends Controller
 			"league" => [
 				"name"=>"League（雙/四排）",
 				"color"=>"pink",
-			] ,
-			"regular" => [
-				"name"=>"Normal（油地）",
-				"color"=>"green",
-			] ,
+			] ,	
 		];
 
 		$rank_modes_translate = [
@@ -76,9 +79,9 @@ class TimetableController extends Controller
 			$maps[$key]['image'] = $value->image_path;
 		}
 
-		$schedules = Schedule::getSchedule();
+		// $schedules = Schedule::getSchedule();
 
-    	return view('timetable')->with(['data'=>$data,'modes_translate'=>$modes_translate,'rank_modes_translate'=>$rank_modes_translate,'maps'=>$maps]);
+    	return view('timetable')->with(['gachi_data'=>$gachi_data,'league_data'=>$league_data,'regular_data'=>$regular_data,'modes_translate'=>$modes_translate,'rank_modes_translate'=>$rank_modes_translate,'maps'=>$maps]);
     }
 
 }

@@ -17,6 +17,8 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->string('start_time');
             $table->string('end_time');
+            $table->string('mode');
+            $table->string('rule');
             $table->string('stage_a_id');
             $table->string('stage_b_id');
             $table->timestamps();

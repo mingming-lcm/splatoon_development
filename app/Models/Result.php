@@ -17,15 +17,22 @@ class Result extends Model
 
     }
 
-    public static function teammatesResults()
+    public function teammatesResults()
     {
-        return $this->hasMany(TeammatesResult::class)->orderBy('battle_number');
+        return $this->hasMany(TeammatesResult::class, 'battle_number', 'battle_number')->orderBy('battle_number');
     }
 
 
     public static function getAllResults()
     {
         return self::orderBy("battle_number", "ASC")
+            ->get();
+    }
+
+    public static function get50Result()
+    {
+        return self::orderBy("battle_number", "ASC")
+            ->limit(50)
             ->get();
     }
 

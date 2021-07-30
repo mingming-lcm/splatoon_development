@@ -17,9 +17,9 @@ class TeammatesResult extends Model
 
     }
 
-    public static function result()
+    public function result()
     {
-        return $this->belongsTo(Result::class);
+        return $this->belongsTo(Result::class, 'battle_number', 'battle_number');
     }
 
     public static function getTeammatesResult($battle_number)

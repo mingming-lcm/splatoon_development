@@ -16,6 +16,7 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->string('battle_number');
+            $table->string('map_id')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
             $table->string('elapsed_time')->nullable();

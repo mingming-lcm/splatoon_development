@@ -74,6 +74,7 @@ class GetSplatoonApi extends Command
             }else{
                 $result->elapsed_time = 300;
             }
+            $result->map_id = $value->stage->id;
             $result->mode = $value->type;
             $result->rule = $value->rule->key;
             if (isset($value->my_team_count)) {

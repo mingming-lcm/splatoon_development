@@ -150,14 +150,17 @@ class GetSplatoonApi extends Command
 
         $timetables = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/schedules");
 
-
-        foreach ($timetables->results as $key => $value) {
-            $timetable = new Timetable();
-            $timetable->start_time = $value->start_time;
-            $timetable->end_time = $value->end_time;
-            $timetable->stage_a_id = $value->stage_a_id;
-            $timetable->stage_b_id = $value->stage_b_id;
-            $timetable->save();
+        foreach ($timetables as $mode => $timetable) {
+            foreach ($timetable as $key => $slot) {
+                $timetable = new Timetable();
+                $timetable->start_time = $slot->start_time;
+                $timetable->end_time = $slot->end_time;
+                $timetable->mode = $slot->game_mode->key;
+                $timetable->rule = $slot->rule->key;
+                $timetable->stage_a = $slot->stage_a->id;
+                $timetable->stage_b = $slot->stage_b->id;
+                $timetable->save();
+            }
         }
     }
 

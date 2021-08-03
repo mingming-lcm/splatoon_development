@@ -152,6 +152,10 @@ class GetSplatoonApi extends Command
 
         foreach ($timetables as $mode => $timetable) {
             foreach ($timetable as $key => $slot) {
+                if(Timetable::checkTimetableByStartTime($slot->start_time)){
+                    continue;
+                } 
+                
                 $timetable = new Timetable();
                 $timetable->start_time = $slot->start_time;
                 $timetable->end_time = $slot->end_time;

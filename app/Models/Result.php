@@ -52,4 +52,10 @@ class Result extends Model
         
         return false;
     }
+
+    public static function getTotalResult(){
+        return self::orderBy("battle_number", "DESC")
+            ->first();
+    }
+
 }

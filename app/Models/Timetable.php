@@ -19,22 +19,39 @@ class Timetable extends Model
         return self::OrderBy('id','DESC')
             ->get();
     }
+
     public static function getGachiTimetable()
     {
         return self::OrderBy('id','DESC')
             ->where('mode', 'gachi')
-            ->get();
+            ->limit(12)
+            ->get()
+            ->sortBy('start_time');
     }
+
     public static function getLeagueTimetable()
     {
         return self::OrderBy('id','DESC')
             ->where('mode', 'league')
-            ->get();
+            ->limit(12)
+            ->get()
+            ->sortBy('start_time');
     }
+
     public static function getRegularTimetable()
     {
         return self::OrderBy('id','DESC')
             ->where('mode', 'regular')
-            ->get();
+            ->limit(12)
+            ->get()
+            ->sortBy('start_time');
     }
+    
+    public static function checkTimetableByStartTime($start_time)
+    {
+        return self::where('start_time', $start_time)
+            ->first();
+    }
+
+    
 }

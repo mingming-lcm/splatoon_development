@@ -31,7 +31,7 @@ class Result extends Model
 
     public static function get50Result()
     {
-        return self::orderBy("battle_number", "ASC")
+        return self::orderBy("battle_number", "DESC")
             ->limit(50)
             ->get();
     }

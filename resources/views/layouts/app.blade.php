@@ -22,6 +22,10 @@
 
     <!-- <title>@yield('title') - {{ __('common.kitco_asia_gift') }}</title> -->
     <title>@yield('title') - 面面的花枝工房</title>
+    
+    {{--jQuery--}}
+    <script type="text/javascript" src="{{ mix('js/jquery-3.6.0.min.js') }}" crossorigin="anonymous"></script>
+
     {{--bootstrap--}}
     <link href="{{ mix('css/bootstrap.min.css') }}" rel="stylesheet" crossorigin="anonymous">
     <script src="{{ mix('js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
@@ -35,7 +39,7 @@
     
     {{--custom css/js --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 
 </head>
 <body>

@@ -22,4 +22,5 @@ mix.js('resources/js/bootstrap.bundle.min.js', 'public/js')
     .postCss('resources/css/bootstrap.min.css', 'public/css', [
         //
     ]);
+mix.js('resources/js/jquery-3.6.0.min.js', 'public/js');
 mix.copy('resources/images', 'public/storage/images');

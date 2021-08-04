@@ -35,7 +35,7 @@ function modesCompare($a, $b){
 			<?php foreach(${$mode_key."_data"} as $key=>$slot){ ?>
 				<div class="schedules_item">
 					<div class="schedules_time">
-						<?php echo date("d/m H:i", $slot->start_time);?> - <?php echo date("H:i", $slot->end_time);?>  
+						<?php echo date("j/n H:i", $slot->start_time);?> - <?php echo date("H:i", $slot->end_time);?>  
 					</div>
 					<div class="schedules_rules" style="color:<?=$rank_modes_translate[$slot->rule]['color'];?>">
 						<?php echo $rank_modes_translate[$slot->rule]['name'];?>

@@ -8,6 +8,7 @@ use App\Models\Map;
 use App\Models\Result;
 use App\Models\Timetable;
 use App\Models\TeammatesResult;
+use Illuminate\Support\Facades\Log;
 
 class GetSplatoonApi extends Command
 {
@@ -152,10 +153,10 @@ class GetSplatoonApi extends Command
 
         foreach ($timetables as $mode => $timetable) {
             foreach ($timetable as $key => $slot) {
-                if(Timetable::checkTimetableByStartTime($slot->start_time)){
+                if(Timetable::checkTimetableExsist($slot->start_time, $slot->game_mode->key)){
                     continue;
                 } 
-                
+
                 $timetable = new Timetable();
                 $timetable->start_time = $slot->start_time;
                 $timetable->end_time = $slot->end_time;
@@ -166,6 +167,9 @@ class GetSplatoonApi extends Command
                 $timetable->save();
             }
         }
+
+        Log::notice("API Command Done.");
+
     }
 
 }

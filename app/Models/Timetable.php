@@ -47,9 +47,10 @@ class Timetable extends Model
             ->sortBy('start_time');
     }
     
-    public static function checkTimetableByStartTime($start_time)
+    public static function checkTimetableExsist($start_time, $mode)
     {
         return self::where('start_time', $start_time)
+            ->where('mode', $mode)
             ->first();
     }
 

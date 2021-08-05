@@ -15,12 +15,11 @@ const mix = require('laravel-mix');
 //     .postCss('resources/css/app.css', 'public/css', [
 //         //
 //     ]);
-mix.js('resources/js/app.js', 'public/js');
-mix.sass('resources/css/sass/app.scss', 'public/css').version().minify('public/css/app.css');
-
+mix.js('resources/js/jquery-3.6.0.min.js', 'public/js');
 mix.js('resources/js/bootstrap.bundle.min.js', 'public/js')
     .postCss('resources/css/bootstrap.min.css', 'public/css', [
         //
     ]);
-mix.js('resources/js/jquery-3.6.0.min.js', 'public/js');
-mix.copy('resources/images', 'public/storage/images');
+mix.copy('resources/images', 'public/images');
+mix.js('resources/js/app.js', 'public/js');
+mix.sass('resources/css/sass/app.scss', 'public/css').version().minify('public/css/app.css');

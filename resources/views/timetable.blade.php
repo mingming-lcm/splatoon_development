@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', __('Splatoon2 時間表'))
+@section('description', __('每隔兩小時更新～'))
 
 
 @section('content')
@@ -35,7 +36,7 @@ function modesCompare($a, $b){
 			<?php foreach(${$mode_key."_data"} as $key=>$slot){ ?>
 				<div class="schedules_item">
 					<div class="schedules_time">
-						<?php echo date("j/n H:i", $slot->start_time);?> - <?php echo date("H:i", $slot->end_time);?>  
+						<?php echo date("H:i", $slot->start_time);?> - <?php echo date("H:i ( j/n )", $slot->end_time);?>  
 					</div>
 					<div class="schedules_rules" style="color:<?=$rank_modes_translate[$slot->rule]['color'];?>">
 						<?php echo $rank_modes_translate[$slot->rule]['name'];?>
@@ -62,23 +63,22 @@ function modesCompare($a, $b){
 			<?php } ?>
 		</div>
 	</div>
+	<?php } ?>
 
-	<div class="d-lg-none" id="schedules_table" >
-	  	<div class="card">
-		    <div class="card-header" id="heading_<?=$mode_key;?>">
-		      <h5 class="mb-0">
-		        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse_<?=$mode_key;?>" aria-expanded="false" aria-controls="collapse_<?=$mode_key;?>">
-		          <?=$mode['name'];?>
-		        </button>
-		      </h5>
-		    </div>
-
-		    <div id="collapse_<?=$mode_key;?>" class="collapse" aria-labelledby="heading_<?=$mode_key;?>" data-parent="#schedules_table">
-			    <div class="card-body">
-				<?php foreach(${$mode_key."_data"} as $key=>$slot){ ?>
+	<div class="d-lg-none accordion" id="schedules_table">
+		<?php foreach($modes_translate as $mode_key => $mode){ ?>
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="heading_<?=$mode_key;?>">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_<?=$mode_key;?>" aria-expanded="false" aria-controls="collapse_<?=$mode_key;?>">
+					<?=$mode['name'];?>
+				</button>
+			</h2>
+			<div id="collapse_<?=$mode_key;?>" class="accordion-collapse collapse" aria-labelledby="heading_<?=$mode_key;?>" data-bs-parent="#schedules_table">
+				<div class="accordion-body">
+					<?php foreach(${$mode_key."_data"} as $key=>$slot){ ?>
 						<div class="schedules_item">
 							<div class="schedules_time">
-								<?php echo date("H:i", $slot->start_time);?> - <?php echo date("H:i", $slot->end_time);?>  
+								<?php echo date("H:i", $slot->start_time);?> - <?php echo date("H:i ( j/n )", $slot->end_time);?>  
 							</div>
 							<div class="schedules_rules" style="color:<?=$rank_modes_translate[$slot->rule]['color'];?>">
 								<?php echo $rank_modes_translate[$slot->rule]['name'];?>
@@ -103,12 +103,11 @@ function modesCompare($a, $b){
 							</div>
 						</div>
 					<?php } ?>
-			    </div>
-		    </div>
-	  	</div>
-  	</div>
-
-	<?php } ?> 
+				</div>
+			</div>
+		</div>
+		<?php } ?>
+	</div>
 </div>
 
 @endsection

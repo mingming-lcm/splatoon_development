@@ -92,6 +92,11 @@ a::selection{
 .schedules_item{
 	border: 1px solid #fff;
 	padding: 20px 10px 20px;
+
+	@media (max-width: 992px) {
+		border: none;
+		border-bottom: 1px solid #fff;
+	}
 }
 .schedules_time{
 	font-size: 24px;
@@ -110,6 +115,17 @@ a::selection{
 	width: 100%;
 }
 
+.accordion-button{
+	background-color: #000;
+	color: #ddd;
+}
+.accordion-button:not(.collapsed){
+	background-color: #000;
+}
+
+.accordion-body {
+	background-color: #000;
+}
 
 
 .results_table{

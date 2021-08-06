@@ -29,6 +29,10 @@ class CreateResultsTable extends Migration
             $table->string('league_point')->nullable();
             $table->string('my_estimate_league_point')->nullable();
             $table->string('other_estimate_league_point')->nullable();
+            $table->string('x_power')->nullable();
+            $table->string('estimate_x_power')->nullable();
+            $table->string('my_team_percentage')->nullable();
+            $table->string('other_team_percentage')->nullable();
             $table->timestamps();
         });
     }

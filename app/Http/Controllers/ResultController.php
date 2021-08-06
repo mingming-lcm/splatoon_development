@@ -127,9 +127,8 @@ class ResultController extends Controller
 
 
 
+		$data = Result::getResultByBattleNumber($battle_number);
     	
-    	$data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results/".$battle_number);
-
     	$modes_translate = [
 			"gachi"=>[
 				"name"=>"Rank（單排）",
@@ -186,7 +185,7 @@ class ResultController extends Controller
 
 
 
-    	return view('results.detail')->with(['data'=>$data,'modes_translate'=>$modes_translate,'rank_modes_translate'=>$rank_modes_translate,'maps'=>$maps,'result'=>$result,'teammate_results'=>$teammate_results]);
+    	return view('results.detail')->with(['data'=>$data,'modes_translate'=>$modes_translate,'rank_modes_translate'=>$rank_modes_translate,'maps'=>$maps]);
     }
 
 

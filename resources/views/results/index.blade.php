@@ -24,7 +24,7 @@
 							</div>
 						</div>
 
-						<?php if($data[$i]->type === "league"){ ?>
+						<?php if($data[$i]->mode === "league"){ ?>
 							<div class="league_point" style="color:<?=$rank_modes_translate[$data[$i]->rule]['color'];?>">
 								<?php 
 									if ($data[$i]->league_point == null) { 
@@ -37,7 +37,7 @@
 
 						<?php } ?>
 
-						<?php  if($data[$i]->type == "regular"){ ?>
+						<?php  if($data[$i]->mode == "regular"){ ?>
 							<div class="results_result">
 								<div class="results_maps_a">
 									<span style="color: red;"><?php echo $data[$i]->my_team_percentage;?>%</span>  (我地隊)
@@ -46,7 +46,7 @@
 								</div>
 								
 							</div>
-						<?php }else if($data[$i]->type == "gachi"){ ?>
+						<?php }else if($data[$i]->mode == "gachi"){ ?>
 							<div class="results_result">
 								<div class="results_play_time">
 

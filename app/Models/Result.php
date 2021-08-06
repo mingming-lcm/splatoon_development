@@ -53,6 +53,17 @@ class Result extends Model
         return false;
     }
 
+    public static function getMyTeamResultByBattleNumber($battle_number)
+    {
+        $results = self::where("battle_number", $battle_number)
+            ->first()->teammatesResults()->where('team', 'my_team');
+        if($results){
+            return $results;
+        }
+        
+        return false;
+    }
+
     public static function getTotalResult(){
         return self::orderBy("battle_number", "DESC")
             ->first();

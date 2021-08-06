@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __($modes_translate[$data->type]['name']. '詳細紀錄'))
+@section('title', __($modes_translate[$data->mode]['name']. '詳細紀錄'))
 
 
 @section('content')
@@ -70,7 +70,7 @@ function urlsafe_b64encode($val) {
 
 
 <div class="title">
-	<?=$modes_translate[$data->type]['name'];?> 詳細紀錄 #<?php echo $data->battle_number;?>
+	<?=$modes_translate[$data->mode]['name'];?> 詳細紀錄 #<?php echo $data->battle_number;?>
 </div>
 <div class="results_table">
 	<div class="results_column">
@@ -86,21 +86,21 @@ function urlsafe_b64encode($val) {
 				<div class="row">
 					<div class="results_detail_item col-xs-12">
 						<div class="results_mode">
-							<?=$modes_translate[$data->type]['name'];?>
+							<?=$modes_translate[$data->mode]['name'];?>
 						</div>
 
 						<div class="results_result">
-							<div class="<?=$data->my_team_result->key === "victory"?'results_result_victory':'results_result_lose';?>">
-								<?php echo $data->my_team_result->name;?>
+							<div class="<?=$data->my_team_result === "victory"?'results_result_victory':'results_result_lose';?>">
+								<?php echo $data->my_team_result;?>
 							</div>
 						</div>
 
 						<div class="results_play_time">
-							時間：<?=isset($data->elapsed_time)?date("i:s",$data->elapsed_time):date("i:s",300);?>
+							時間：<?=date("i:s",$data->elapsed_time).($data->elapsed_time<=300?"":" <span class='red'>(Overtime)</span>");?>
 						</div>
 
-						<?php if($data->type === "league"){ ?>
-							<div class="league_point" style="color:<?=$rank_modes_translate[$data->rule->key]['color'];?>">
+						<?php if($data->mode === "league"){ ?>
+							<div class="league_point" style="color:<?=$rank_modes_translate[$data->rule]['color'];?>">
 								<?php 
 									if ($data->league_point == null) { 
 										echo "未開分";
@@ -117,17 +117,17 @@ function urlsafe_b64encode($val) {
 
 					<div class="results_detail_item col-xs-12 col-sm-6">
 						<div class="results_detail_my_team">
-							<?php  if($data->type == "regular"){ ?>
+							<?php  if($data->mode == "regular"){ ?>
 								<div class="results_result">
 									<div class="results_maps_a">
-										<span style="color: red;"><?php echo $data->my_team_percentage;?>%</span>  (我地隊)
+										<!-- <span style="color: red;"><?php echo $data->my_team_percentage;?>%</span>  (我地隊) -->
 									</div>
 									
 								</div>
-							<?php }else if($data->type == "gachi"){ ?>
+							<?php }else if($data->mode == "gachi"){ ?>
 
 								<div class="results_detail_other_team_power">
-									推定戰力：<span style="color: red;"><?=$data->estimate_gachi_power?$data->estimate_gachi_power:$data->estimate_x_power;?></span>
+									<!-- 推定戰力：<span style="color: red;"><?=$data->estimate_gachi_power?$data->estimate_gachi_power:$data->estimate_x_power;?></span> -->
 								</div>
 							<?php }else{ ?>
 
@@ -138,24 +138,14 @@ function urlsafe_b64encode($val) {
 									</div>
 								</div>
 							<?php } ?>
-
-							<div class="results_detail_my_team_1">
-								</br>遊戲名稱：<span style="color: yellow;"><?php echo $data->player_result->player->nickname?></span></br>
-								殺數（助攻）：<?php echo $data->player_result->kill_count+$data->player_result->assist_count;?>（<?php echo $data->player_result->assist_count;?>）</br>
-								死數：<?php echo $data->player_result->death_count?></br>
-								大技：<?php echo $data->player_result->special_count?></br>
-								油地量：<?php echo $data->player_result->game_paint_point?>p
-							</div>
-							<?php for ($i=0; $i < count($data->my_team_members); $i++) { ?>
-								
-							
-							<div class="results_detail_my_team_<?=$i?>">
-								</br>遊戲名稱：<span style="color: yellow;"><?php echo $data->my_team_members[$i]->player->nickname?></span></br>
-								殺數（助攻）：<?php echo $data->my_team_members[$i]->kill_count+$data->my_team_members[$i]->assist_count;?>（<?php echo $data->my_team_members[$i]->assist_count;?>）</br>
-								死數：<?php echo $data->my_team_members[$i]->death_count?></br>
-								大技：<?php echo $data->my_team_members[$i]->special_count?></br>
-								油地量：<?php echo $data->my_team_members[$i]->game_paint_point?>p
-							</div>
+							<?php foreach($data->teammatesResults->where('team', 'my_team') as $key => $teammate) { ?>
+								<div class="results_detail_my_team_<?=$key?>">
+									</br>遊戲名稱：<span style="color: yellow;"><?php echo $teammate->player_name?></span></br>
+									殺數（助攻）：<?php echo $teammate->kill_count+$teammate->assist_count;?>（<?php echo $teammate->assist_count;?>）</br>
+									死數：<?php echo $teammate->death_count?></br>
+									大技：<?php echo $teammate->special_count?></br>
+									油地量：<?php echo $teammate->game_paint_point?>p
+								</div>
 							<?php } ?>
 
 						
@@ -164,17 +154,17 @@ function urlsafe_b64encode($val) {
 					<div class="results_detail_item col-xs-12 col-sm-6">
 						<div class="results_detail">
 							
-							<?php  if($data->type == "regular"){ ?>
+							<?php  if($data->mode == "regular"){ ?>
 								<div class="results_result">
 									<div class="results_maps_a">
-										<span style="color: red;"><?php echo $data->other_team_percentage;?>%</span> (對面隊)
+										<!-- <span style="color: red;"><?php echo $data->other_team_percentage;?>%</span> (對面隊) -->
 									</div>
 									
 								</div>
-							<?php }else if($data->type == "gachi"){ ?>
+							<?php }else if($data->mode == "gachi"){ ?>
 
 								<div class="results_detail_other_team_power">
-									推定戰力：<span style="color: red;"><?=$data->estimate_gachi_power?$data->estimate_gachi_power:$data->estimate_x_power;?></span>
+									<!-- 推定戰力：<span style="color: red;"><?=$data->estimate_gachi_power?$data->estimate_gachi_power:$data->estimate_x_power;?></span> -->
 								</div>
 							<?php }else{ ?>
 
@@ -185,15 +175,14 @@ function urlsafe_b64encode($val) {
 								</div>
 							<?php } ?>
 
-							<?php for ($i=0; $i < count($data->other_team_members); $i++) { ?>
-								
+							<?php foreach($data->teammatesResults->where('team', 'other_team') as $key => $teammate) { ?>
 							
-							<div class="results_detail_other_team_<?=$i?>">
-								</br>遊戲名稱：<span style="color: yellow;"><?php echo $data->other_team_members[$i]->player->nickname?></span></br>
-								殺數（助攻）：<?php echo $data->other_team_members[$i]->kill_count+$data->other_team_members[$i]->assist_count;?>（<?php echo $data->other_team_members[$i]->assist_count;?>）</br>
-								死數：<?php echo $data->other_team_members[$i]->death_count?></br>
-								大技：<?php echo $data->other_team_members[$i]->special_count?></br>
-								油地量：<?php echo $data->other_team_members[$i]->game_paint_point?>p
+							<div class="results_detail_other_team_<?=$key?>">
+								</br>遊戲名稱：<span style="color: yellow;"><?php echo $teammate->player_name?></span></br>
+								殺數（助攻）：<?php echo $teammate->kill_count+$teammate->assist_count;?>（<?php echo $teammate->assist_count;?>）</br>
+								死數：<?php echo $teammate->death_count?></br>
+								大技：<?php echo $teammate->special_count?></br>
+								油地量：<?php echo $teammate->game_paint_point?>p
 							</div>
 							<?php } ?>
 
@@ -202,159 +191,16 @@ function urlsafe_b64encode($val) {
 					
 					<div class="results_detail_item col-xs-12">
 						<div class="results_maps_name">
-							<?=$maps[$data->stage->id]['name']?>
+							<?=$maps[$data->map_id]['name']?>
 						</div>
 						<div class="results_maps_image">
-							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$data->stage->id]['image']?>" />
+							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$data->map_id]['image']?>" />
 
 						</div>
 					</div>
 
 				</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<div class="row">
-					<div class="results_detail_item col-xs-12">
-						<div class="results_mode">
-							<?=$modes_translate[$result->mode]['name'];?>
-						</div>
-
-						<div class="results_result">
-							<div class="<?=$result->my_team_result === "victory"?'results_result_victory':'results_result_lose';?>">
-								<?php echo $result->my_team_result;?>
-							</div>
-						</div>
-
-						<div class="results_play_time">
-							時間：<?=isset($data->elapsed_time)?date("i:s",$data->elapsed_time):date("i:s",300);?>
-						</div>
-
-						<?php if($result->type === "league"){ ?>
-							<div class="league_point" style="color:<?=$rank_modes_translate[$result->rule]['color'];?>">
-								<?php 
-									if ($result->league_point == null) { 
-										echo "未開分";
-									}else { 
-										echo "聯盟分數：".$result->league_point;
-									} 
-								?> 
-							</div>
-
-						<?php } ?>
-
-					</div>
-
-
-					<div class="results_detail_item col-xs-12 col-sm-6">
-						<div class="results_detail_my_team">
-							<?php  if($result->type == "regular"){ ?>
-								<div class="results_result">
-									<div class="results_maps_a">
-										<span style="color: red;"><?php echo $result->my_team_percentage;?>%</span>  (我地隊)
-									</div>
-									
-								</div>
-							<?php }else if($result->type == "gachi"){ ?>
-
-								<div class="results_detail_other_team_power">
-									推定戰力：<span style="color: red;"><?=$result->estimate_gachi_power?$result->estimate_gachi_power:$result->estimate_x_power;?></span>
-								</div>
-							<?php }else{ ?>
-
-								<div class="results_result">
-									
-									<div class="results_maps_a">
-										<span style="color: red;"><?php echo $result->my_team_count;?></span> count (我地隊) （推定戰力：<span style="color: red;"><?php echo $result->my_estimate_league_point;?></span>）
-									</div>
-								</div>
-							<?php } ?>
-
-							<div class="results_detail_my_team_1">
-								</br>遊戲名稱：<span style="color: yellow;"><?php// echo $result->player_name?></span></br>
-								殺數（助攻）：<?php// echo $result->player_result->kill_count+$result->player_result->assist_count;?>（<?php// echo $result->player_result->assist_count;?>）</br>
-								死數：<?php// echo $result->player_result->death_count?></br>
-								大技：<?php// echo $result->player_result->special_count?></br>
-								油地量：<?php// echo $result->player_result->game_paint_point?>p
-							</div>
-							<?php// for ($i=0; $i < count($result->my_team_members); $i++) { ?>
-								
-							
-							<div class="results_detail_my_team_<?=$i?>">
-								</br>遊戲名稱：<span style="color: yellow;"><?php// echo $result->my_team_members[$i]->player->nickname?></span></br>
-								殺數（助攻）：<?php// echo $result->my_team_members[$i]->kill_count+$result->my_team_members[$i]->assist_count;?>（<?php// echo $result->my_team_members[$i]->assist_count;?>）</br>
-								死數：<?php// echo $result->my_team_members[$i]->death_count?></br>
-								大技：<?php// echo $result->my_team_members[$i]->special_count?></br>
-								油地量：<?php// echo $result->my_team_members[$i]->game_paint_point?>p
-							</div>
-							<?php// } ?>
-
-						
-						</div>
-					</div>
-					<div class="results_detail_item col-xs-12 col-sm-6">
-						<div class="results_detail">
-							
-							<?php  if($result->type == "regular"){ ?>
-								<div class="results_result">
-									<div class="results_maps_a">
-										<span style="color: red;"><?php echo $result->other_team_percentage;?>%</span> (對面隊)
-									</div>
-									
-								</div>
-							<?php }else if($result->type == "gachi"){ ?>
-
-								<div class="results_detail_other_team_power">
-									推定戰力：<span style="color: red;"><?=$result->estimate_gachi_power?$result->estimate_gachi_power:$result->estimate_x_power;?></span>
-								</div>
-							<?php }else{ ?>
-
-								<div class="results_result">
-									<div class="results_maps_a">
-										<span style="color: red;"><?php echo $result->other_team_count;?></span> count (對面隊)（推定戰力：<span style="color: red;"><?php echo $result->other_estimate_league_point;?></span>）
-									</div>
-								</div>
-							<?php } ?>
-
-							<?php// for ($i=0; $i < count($result->other_team_members); $i++) { ?>
-								
-							
-							<div class="results_detail_other_team_<?=$i?>">
-								</br>遊戲名稱：<span style="color: yellow;"><?php// echo $result->other_team_members[$i]->player->nickname?></span></br>
-								殺數（助攻）：<?php// echo $result->other_team_members[$i]->kill_count+$result->other_team_members[$i]->assist_count;?>（<?php// echo $result->other_team_members[$i]->assist_count;?>）</br>
-								死數：<?php// echo $result->other_team_members[$i]->death_count?></br>
-								大技：<?php// echo $result->other_team_members[$i]->special_count?></br>
-								油地量：<?php// echo $result->other_team_members[$i]->game_paint_point?>p
-							</div>
-							<?php// } ?>
-
-						</div>
-					</div>
-					
-					<div class="results_detail_item col-xs-12">
-						<div class="results_maps_name">
-							<?//=$maps[$result->stage->id]['name']?>
-						</div>
-						<div class="results_maps_image">
-							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$data->stage->id]['image']?>" />
-
-						</div>
-					</div>
-
-				</div>
 	</div>
 </div>
 

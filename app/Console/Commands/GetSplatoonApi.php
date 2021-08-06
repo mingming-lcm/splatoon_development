@@ -99,6 +99,22 @@ class GetSplatoonApi extends Command
             if (isset($value->other_estimate_league_point)) {
                 $result->other_estimate_league_point = $value->other_estimate_league_point;
             }
+
+            if (isset($value->x_powewr)) {
+                $result->x_powewr = $value->x_powewr;
+            }
+
+            if (isset($value->estimate_x_power)) {
+                $result->estimate_x_power = $value->estimate_x_power;
+            }
+
+            if (isset($value->my_team_percentage)) {
+                $result->my_team_percentage = $value->my_team_percentage;
+            }
+
+            if (isset($value->other_team_percentage)) {
+                $result->other_team_percentage = $value->other_team_percentage;
+            }
             
             $result->save();
 

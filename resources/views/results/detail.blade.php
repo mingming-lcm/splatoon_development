@@ -5,69 +5,6 @@
 
 @section('content')
 
-<?php
-function urlsafe_b64encode($val) {
-  $val = base64_encode($val);
-  return str_replace(["/","+","="], ["_","-",""], $val);
-}
-// $auth_state = urlsafe_b64encode(random_bytes(36));
-// $auth_state = "L5bjEkl1rgC4ASIK8ut2LRQL84zEpg-MMxZrPMoQMwyW_qnM";
-// // $auth_code_verifier = urlsafe_b64encode(random_bytes(32));
-// $auth_code_verifier = "Cor2PmOlGq1trB3uqWouVG7QPQHprPTGVhGRbTF-9DU";
-// $auth_cv_hash = hash("sha256", $auth_code_verifier);
-// // $auth_code_challenge = urlsafe_b64encode(hex2bin($auth_cv_hash));
-// $auth_code_challenge = "ZYVT7hgxHpTgmJy4nM9yTbF5tMJPJY2zkJQidXegAdk";
-
-// $base_url = "https://accounts.nintendo.com/connect/1.0.0/authorize?";
-
-// $param = array( 
-//     "state" => $auth_state,
-//     "redirect_uri" => "npf71b963c1b7b6d119://auth",
-//     "client_id" => "71b963c1b7b6d119",
-//     "scope" => "openid user user.birthday user.mii user.screenName",
-//     "response_type" => "session_token_code",
-//     "session_token_code_challenge" => $auth_code_challenge,
-//     "session_token_code_challenge_method" => "S256",
-//     "theme" => "login_form"
-// );
-// $auth_url = $base_url . http_build_query($param);
-// $response = array(
-//     "auth_code_verifier" => $auth_code_verifier,
-//     "auth_url" => $auth_url);
-
-// header('content-type: application/json; charset=utf-8');
-// echo(json_encode($response, JSON_UNESCAPED_SLASHES));
-
-
-// echo "npf71b963c1b7b6d119://auth#session_state=497847fd397d44129c9d77d9fbf1a1edd8bad231dc25e928086263f9cb452a2c&session_token_code=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLm5pbnRlbmRvLmNvbSIsInN1YiI6IjY5MTQ2M2RiMjYyM2JjNTciLCJ0eXAiOiJzZXNzaW9uX3Rva2VuX2NvZGUiLCJzdGM6c2NwIjpbMCw4LDksMTcsMjNdLCJleHAiOjE2MjA1OTA4MzYsInN0YzpjIjoiWllWVDdoZ3hIcFRnbUp5NG5NOXlUYkY1dE1KUEpZMnprSlFpZFhlZ0FkayIsInN0YzptIjoiUzI1NiIsImp0aSI6IjM2MzA3MjI0ODA2IiwiaWF0IjoxNjIwNTkwMjM2LCJhdWQiOiI3MWI5NjNjMWI3YjZkMTE5In0.H9uUeRV5V0JZyCbF2DKNFeCi3XjAKtgYB2D8BV_L5CQ&state=L5bjEkl1rgC4ASIK8ut2LRQL84zEpg-MMxZrPMoQMwyW_qnM";
-
-
-
-
-// $url = "https://accounts.nintendo.com/connect/1.0.0/api/session_token";
-//         $session_token_code_verifier = $auth_code_verifier;
-//         $parameters = [
-//             "client_id":                    "71b963c1b7b6d119",
-//             "session_token_code":           session_token_code,
-//             "session_token_code_verifier":  session_token_code_verifier,
-//         ];
-//         $header = [
-//             "User-Agent":      f"Salmonia/{version} @tkgling",
-//             "Accept":          "application/json",
-//             "Content-Type":    "application/x-www-form-urlencoded",
-//             "Content-Length":  str(len(urllib.parse.urlencode(parameters))),
-//             "Host":            "accounts.nintendo.com",
-//         ];
-
-//         $response = array(
-//     "auth_code_verifier" => $auth_code_verifier,
-//     "auth_url" => $auth_url);
-//         echo(json_encode($response["session_token"], JSON_UNESCAPED_SLASHES));
-
-?>
-
-
-
 
 <div class="title">
 	<?=$modes_translate[$data->mode]['name'];?> 詳細紀錄 #<?php echo $data->battle_number;?>
@@ -87,6 +24,8 @@ function urlsafe_b64encode($val) {
 					<div class="results_detail_item col-xs-12">
 						<div class="results_mode">
 							<?=$modes_translate[$data->mode]['name'];?>
+							<span style="color:<?=$rank_modes_translate[$data->rule]['color'];?>">
+							<?=$rank_modes_translate[$data->rule]['name'];?></span>
 						</div>
 
 						<div class="results_result">
@@ -120,21 +59,21 @@ function urlsafe_b64encode($val) {
 							<?php  if($data->mode == "regular"){ ?>
 								<div class="results_result">
 									<div class="results_maps_a">
-										<!-- <span style="color: red;"><?php echo $data->my_team_percentage;?>%</span>  (我地隊) -->
+										<span style="color: red;"><?php echo $data->my_team_percentage;?>%</span>  (我們)
 									</div>
 									
 								</div>
 							<?php }else if($data->mode == "gachi"){ ?>
 
 								<div class="results_detail_other_team_power">
-									<!-- 推定戰力：<span style="color: red;"><?=$data->estimate_gachi_power?$data->estimate_gachi_power:$data->estimate_x_power;?></span> -->
+									推定戰力：<span style="color: red;"><?=$data->estimate_gachi_power?$data->estimate_gachi_power:$data->estimate_x_power;?></span>
 								</div>
 							<?php }else{ ?>
 
 								<div class="results_result">
 									
 									<div class="results_maps_a">
-										<span style="color: red;"><?php echo $data->my_team_count;?></span> count (我地隊) （推定戰力：<span style="color: red;"><?php echo $data->my_estimate_league_point;?></span>）
+										<span style="color: red;"><?php echo $data->my_team_count;?></span> count (我們) （推定戰力：<span style="color: red;"><?php echo $data->my_estimate_league_point;?></span>）
 									</div>
 								</div>
 							<?php } ?>
@@ -157,20 +96,20 @@ function urlsafe_b64encode($val) {
 							<?php  if($data->mode == "regular"){ ?>
 								<div class="results_result">
 									<div class="results_maps_a">
-										<!-- <span style="color: red;"><?php echo $data->other_team_percentage;?>%</span> (對面隊) -->
+										<span style="color: red;"><?php echo $data->other_team_percentage;?>%</span> (對面)
 									</div>
 									
 								</div>
 							<?php }else if($data->mode == "gachi"){ ?>
 
 								<div class="results_detail_other_team_power">
-									<!-- 推定戰力：<span style="color: red;"><?=$data->estimate_gachi_power?$data->estimate_gachi_power:$data->estimate_x_power;?></span> -->
+									推定戰力：<span style="color: red;"><?=$data->estimate_gachi_power?$data->estimate_gachi_power:$data->estimate_x_power;?></span>
 								</div>
 							<?php }else{ ?>
 
 								<div class="results_result">
 									<div class="results_maps_a">
-										<span style="color: red;"><?php echo $data->other_team_count;?></span> count (對面隊)（推定戰力：<span style="color: red;"><?php echo $data->other_estimate_league_point;?></span>）
+										<span style="color: red;"><?php echo $data->other_team_count;?></span> count (對面)（推定戰力：<span style="color: red;"><?php echo $data->other_estimate_league_point;?></span>）
 									</div>
 								</div>
 							<?php } ?>

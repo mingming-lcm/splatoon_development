@@ -16,6 +16,8 @@
 					<div class="results_item col-xs-12 col-sm-6">
 						<div class="results_mode">
 							<?=$modes_translate[$data[$i]->mode]['name'];?>
+							<span style="color:<?=$rank_modes_translate[$data[$i]->rule]['color'];?>">
+							<?=$rank_modes_translate[$data[$i]->rule]['name'];?></span>
 						</div>
 
 						<div class="results_result">
@@ -25,7 +27,7 @@
 						</div>
 
 						<?php if($data[$i]->mode === "league"){ ?>
-							<div class="league_point" style="color:<?=$rank_modes_translate[$data[$i]->rule]['color'];?>">
+							<div class="league_point" style="color:lightgreen;">
 								<?php 
 									if ($data[$i]->league_point == null) { 
 										echo "未開分";

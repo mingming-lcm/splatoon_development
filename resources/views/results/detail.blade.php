@@ -39,7 +39,7 @@
 						</div>
 
 						<?php if($data->mode === "league"){ ?>
-							<div class="league_point" style="color:<?=$rank_modes_translate[$data->rule]['color'];?>">
+							<div class="league_point" style="color:lightgreen;">
 								<?php 
 									if ($data->league_point == null) { 
 										echo "未開分";

@@ -134,10 +134,82 @@ class DatabaseSeeder extends Seeder
 
 		];
 
+		$modes = [
+			[
+				"id" => "1",
+				"code" => "regular",
+				"name"=>"Regular（油地）",
+				"color"=>"green",
+			],
+			[
+				"id" => "2",
+				"code" => "gachi",
+				"name"=>"Rank（真劍）",
+				"color"=>"orange",
+			],
+			[
+				"id" => "3",
+				"code" => "league",
+				"name"=>"League（雙/四排）",
+				"color"=>"pink",
+			],	
+		];
+
+		$rules = [
+			[
+				"id" => "1",
+				"code" => "splat_zones",
+				"name"=>"ガチエリア（搶地）",
+				"color"=>"red",
+			] ,
+			[
+				"id" => "2",
+				"code" => "tower_control",
+				"name"=>"ガチヤグラ（搶塔）",
+				"color"=>"lightblue",
+			] ,
+			[
+				"id" => "3",
+				"code" => "rain_maker",
+				"name"=>"ガチホコバトル（搶魚）",
+				"color"=>"yellow",
+			] ,
+			[
+				"id" => "4",
+				"code" => "clam_blitz",
+				"name"=>"ガチアサリ（搶蜆）",
+				"color"=>"Salmon",
+			] ,
+			[
+				"id" => "5",
+				"code" => "turf_war",
+				"name"=>"ナワバリバトル（油地）",
+				"color"=>"green",
+			] ,
+		];
+
 		foreach ($maps as $key => $value) {
 			DB::table('maps')->insert([
 	    		'name' => $value["name"],
 	            'image_path' => $value["image"],
+	            
+	        ]);
+		}
+
+		foreach ($modes as $key => $value) {
+			DB::table('modes')->insert([
+	    		'code' => $value["code"],
+	    		'name' => $value["name"],
+	            'color' => $value["color"],
+	            
+	        ]);
+		}
+
+		foreach ($rules as $key => $value) {
+			DB::table('rules')->insert([
+	    		'code' => $value["code"],
+	    		'name' => $value["name"],
+	            'color' => $value["color"],
 	            
 	        ]);
 		}

@@ -42,9 +42,9 @@
 						<?php  if($data[$i]->mode == "regular"){ ?>
 							<div class="results_result">
 								<div class="results_maps_a">
-									<span style="color: red;"><?php echo $data[$i]->my_team_percentage;?>%</span>  (我地隊)
+									<span style="color: red;"><?php echo $data[$i]->my_team_percentage;?>%</span>  (我們)
 								 vs
-									<span style="color: red;"><?php echo $data[$i]->other_team_percentage;?>%</span> (對面隊)
+									<span style="color: red;"><?php echo $data[$i]->other_team_percentage;?>%</span> (對面)
 								</div>
 								
 							</div>
@@ -63,10 +63,10 @@
 								</div>
 
 								<div class="results_maps_a">
-									<span style="color: red;"><?php echo $data[$i]->my_team_count;?></span> count (我地隊)
+									<span style="color: red;"><?php echo $data[$i]->my_team_count;?></span> count (我們)
 
 								vs
-									<span style="color: red;"><?php echo $data[$i]->other_team_count;?></span> count (對面隊)
+									<span style="color: red;"><?php echo $data[$i]->other_team_count;?></span> count (對面)
 								</div>
 							</div>
 						<?php }else{ ?>
@@ -78,14 +78,14 @@
 									時間：<?=date("i:s",$data[$i]->elapsed_time);?>
 								</div>
 								<div class="results_maps_a">
-									<span style="color: red;"><?php echo $data[$i]->my_team_count;?></span> count (我地隊) （推定戰力：<span style="color: red;"><?php echo $data[$i]->my_estimate_league_point;?></span>）
+									<span style="color: red;"><?php echo $data[$i]->my_team_count;?></span> count (我們) （推定戰力：<span style="color: red;"><?php echo $data[$i]->my_estimate_league_point;?></span>）
 								</div>
 								<div>
 								vs	
 								</div>
 								
 								<div class="results_maps_a">
-									<span style="color: red;"><?php echo $data[$i]->other_team_count;?></span> count (對面隊)（推定戰力：<span style="color: red;"><?php echo $data[$i]->other_estimate_league_point;?></span>）
+									<span style="color: red;"><?php echo $data[$i]->other_team_count;?></span> count (對面)（推定戰力：<span style="color: red;"><?php echo $data[$i]->other_estimate_league_point;?></span>）
 								</div>
 							</div>
 						<?php } ?>

@@ -34,11 +34,11 @@ class TimetableController extends Controller
 
 		$modes_translate = [
 			"regular" => [
-				"name"=>"Normal（油地）",
+				"name"=>"Regular（油地）",
 				"color"=>"green",
 			] ,
 			"gachi"=>[
-				"name"=>"Rank（單排）",
+				"name"=>"Rank（真劍）",
 				"color"=>"orange",
 			] ,
 			"league" => [

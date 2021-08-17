@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\IksmSession;
+use Illuminate\Support\Facades\Log;
 
 class GetIksm extends Command
 {
@@ -51,28 +52,30 @@ class GetIksm extends Command
 
         // $data = $this->squidFishing("https://app.splatoon2.nintendo.net/api/results");
 
-        $result = json_decode($this->getSessionTokenCode());
+        // $result = json_decode($this->getSessionTokenCode());
 
 
-        $session_token_code_verifier = $result->auth_code_verifier;
+        // $session_token_code_verifier = $result->auth_code_verifier;
 
         // $session_token_code = $this->urlsafe_b64encode(hex2bin(hash("sha256", $session_token_code_verifier)));
 
 
-        dump($result);
+        // dump($result);
 
-        $parts = explode("&",parse_url($result->auth_url)['query']);
+        // $parts = explode("&",parse_url($result->auth_url)['query']);
 
-        $session_token_code = $this->editQuery("session_token_code_challenge", parse_url($result->auth_url)['query']);
+        // $session_token_code = $this->editQuery("session_token_code_challenge", parse_url($result->auth_url)['query']);
 
 
 
-        dump($this->getSessionToken($session_token_code, $session_token_code_verifier));
+        // dump($this->getSessionToken($session_token_code, $session_token_code_verifier));
 
         // $iksm = new IksmSession();
         // $iksm->iksm_session = "2e2f21a7f198cb6a25e790d86220bb819a3b8405";
         // $iksm->user_agent = "hello_testing_again";
         // $iksm->save();
+
+        Log::info("test done");
     }
 
     public function editQuery($get,$query){

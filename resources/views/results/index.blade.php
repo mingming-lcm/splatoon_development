@@ -15,9 +15,10 @@
 				<a class="row" href="{{ route('result.detail',['battle_number' => $data[$i]->battle_number]) }}">
 					<div class="results_item col-xs-12 col-sm-6">
 						<div class="results_mode">
-							<?=$modes_translate[$data[$i]->mode]['name'];?>
-							<span style="color:<?=$rank_modes_translate[$data[$i]->rule]['color'];?>">
-							<?=$rank_modes_translate[$data[$i]->rule]['name'];?></span>
+							{{ $modes::getModeByCode($data[$i]->mode)->name }}
+							<span style="color:{{ $rules::getRuleByCode($data[$i]->rule)->color }}">
+							{{ $rules::getRuleByCode($data[$i]->rule)->name }}
+							</span>
 						</div>
 
 						<div class="results_result">

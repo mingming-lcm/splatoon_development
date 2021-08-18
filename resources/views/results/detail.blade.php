@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', __($modes_translate[$data->mode]['name']. '詳細紀錄'))
+@section('title', __($modes::getModeByCode($data->mode)->name . '詳細紀錄'))
 
 
 @section('content')
 
 
 <div class="title">
-	<?=$modes_translate[$data->mode]['name'];?> 詳細紀錄 #<?php echo $data->battle_number;?>
+	{{ $modes::getModeByCode($data->mode)->name }} 詳細紀錄 #<?php echo $data->battle_number;?>
 </div>
 <div class="results_table">
 	<div class="results_column">
@@ -23,9 +23,10 @@
 				<div class="row">
 					<div class="results_detail_item col-xs-12">
 						<div class="results_mode">
-							<?=$modes_translate[$data->mode]['name'];?>
-							<span style="color:<?=$rank_modes_translate[$data->rule]['color'];?>">
-							<?=$rank_modes_translate[$data->rule]['name'];?></span>
+							{{ $modes::getModeByCode($data->mode)->name }}
+							<span style="color:{{ $rules::getRuleByCode($data->rule)->color }}">
+								{{ $rules::getRuleByCode($data->rule)->name }}
+							</span>
 						</div>
 
 						<div class="results_result">

@@ -29,18 +29,16 @@ class HomeController extends Controller
     {
     	$url = $request->input('url');
     	$session_token_code_verifier = $request->input('session_token_code_verifier');
-    	// dump($request);
 
     	$session_token_code = $this->editQuery('session_token_code', $url);
-
     	$session_token = $this->getSessionToken($session_token_code, $session_token_code_verifier);
     	$access_token = $this->getAccessToken($session_token);
     	$flapg_nso = $this->callFlapgAPI($access_token, 'app');
+
     	$splatoon_token = $this->getSplatoonToken($flapg_nso);
     	$splatoon_access_token = $this->getSplatoonAccessToken($flapg_nso, $splatoon_token);
     	$iksm = $this->getIksmSession($splatoon_access_token);
     	// $access_token = $this->callS2SAPI($access_token, time());
-    	dd($iksm);
     	return view('pages.get_iksm');
     }
 
@@ -54,8 +52,6 @@ class HomeController extends Controller
             }
            
         }
-       
-       dump($return);
         return $return;
     }
 
@@ -91,11 +87,11 @@ class HomeController extends Controller
         switch (!empty($response["error"])) {
             case true:
                 http_response_code(400);
-                return $response["error"];
+                return $response;
                 return (json_encode(array("from" => "salmonia api", "error" => "invalid_request", "error_description" => "The provided session_token_code is expired")));
                 break;
             case false:
-                return (json_encode(array("session_token" => $response["session_token"])));
+                return $response["session_token"];
                 break;
             default:
                 break;
@@ -136,7 +132,7 @@ class HomeController extends Controller
                 return (json_encode(array("from" => "salmonia api", "error" => "invalid_request", "error_description" => "The provided session_token is expired")));
                 break;
             case false:
-                return (json_encode(array("access_token" => $response["access_token"])));
+                return $response["access_token"];
                 break;
             default:
                 break;
@@ -145,12 +141,16 @@ class HomeController extends Controller
 
     function callS2SAPI($access_token, $timestamp)
     {
+
+        dump($access_token);
+        dump(strval($timestamp));
         $curl = curl_init();
 
-        $body = http_build_query(array(
+        $body = json_encode(array(
             "naIdToken" => $access_token,
-            "timestamp" => $timestamp
+            "timestamp" => strval($timestamp)
         ));
+        dump($body);
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://elifessler.com/s2s/api/gen2",
             CURLOPT_RETURNTRANSFER => true,
@@ -163,12 +163,12 @@ class HomeController extends Controller
             CURLOPT_POSTFIELDS => $body,
             CURLOPT_HTTPHEADER => array(
                 "Host: elifessler.com",
-                "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X)",
-                "Content-Type: application/x-www-form-urlencoded"
+                "User-Agent: Salmonia for ReactNative/0.0.1",    
+                "Content-Type: application/json"
             ),
         ));
 
-        $response = json_decode(curl_exec($curl), true);
+        $response = curl_exec($curl);
         curl_close($curl);
 
         dd($response);
@@ -189,6 +189,8 @@ class HomeController extends Controller
 
     function callFlapgAPI($access_token, $type)
     {
+        dump($access_token);
+
         $curl = curl_init();
 
         $timestamp = time();
@@ -198,6 +200,7 @@ class HomeController extends Controller
         // Call s2s API
         $hash = $this->callS2SAPI($access_token, $timestamp);
 
+        dump($hash);
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://flapg.com/ika2/api/login?public",
             CURLOPT_RETURNTRANSFER => true,
@@ -219,6 +222,8 @@ class HomeController extends Controller
         ));
         $response = json_decode(curl_exec($curl), true);
         curl_close($curl);
+
+        dd($response);
 
         switch (!empty($response["error"])) {
             case true:
@@ -261,7 +266,7 @@ class HomeController extends Controller
             CURLOPT_HTTPHEADER => array(
                 "Host: api-lp1.znc.srv.nintendo.net",
                 "Accept: */*",
-                "X-ProductVersion: 1.10.1",
+                "X-ProductVersion: 1.11.0",
                 "Accept-Language: en-US",
                 "Content-Type: application/json",
                 "Connection: keep-alive",

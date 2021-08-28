@@ -25,7 +25,7 @@ class IksmSession extends Model
 
 
     public static function squidFishing($url){
-        $iksm = "3d714190265569a6a50e63858078deb5d3f26c3c";
+        $iksm = "51e1b8d8d950d6f6b6d051b59b4e795f4e8463c7";
         $header = array(
             "Cookie: iksm_session=" . $iksm,
             "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X)  

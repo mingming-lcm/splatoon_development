@@ -184,6 +184,26 @@ class GetSplatoonApi extends Command
             }
         }
 
+        $records = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/records");
+
+        $my_records = new Timetable();
+        $my_records->player_id = $records->records->player->principal_id;
+        $my_records->nickname = $records->records->player->nickname;
+        $my_records->player_rank = $records->records->player->player_rank;
+        $my_records->star_rank = $records->records->player->star_rank;
+
+        $my_records->player_gender = $records->records->player->player_type->style;
+        $my_records->player_type = $records->records->player->player_type->species;
+        $my_records->max_league_point_pair = $records->records->player->max_league_point_pair;
+        $my_records->max_league_point_team = $records->records->player->max_league_point_team;
+        
+        $my_records->win_count = $records->records->win_count;
+        $my_records->lose_count = $records->records->lose_count;
+        $my_records->recent_disconnect_count = $records->records->recent_disconnect_count;
+        $my_records->start_time = $records->records->start_time;
+        $my_records->save();
+
+
         Log::notice("API Command Done.");
 
     }

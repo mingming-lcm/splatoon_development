@@ -26,6 +26,7 @@ class CreatePlayerGeneralStatusTable extends Migration
             $table->string('win_count');
             $table->string('lose_count');
             $table->string('recent_disconnect_count');
+            $table->string('start_time');
             $table->timestamps();
         });
     }

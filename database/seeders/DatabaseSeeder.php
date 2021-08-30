@@ -170,15 +170,15 @@ class DatabaseSeeder extends Seeder
 			] ,
 			[
 				"id" => "3",
-				"code" => "rain_maker",
+				"code" => "rainmaker",
 				"name"=>"ガチホコバトル（搶魚）",
-				"color"=>"yellow",
+				"color"=>"pink",
 			] ,
 			[
 				"id" => "4",
 				"code" => "clam_blitz",
 				"name"=>"ガチアサリ（搶蜆）",
-				"color"=>"Salmon",
+				"color"=>"yellow",
 			] ,
 			[
 				"id" => "5",

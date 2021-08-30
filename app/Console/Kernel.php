@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command(GetSplatoonApi::class)->everyTwoHours();	
+        $schedule->command(GetSplatoonApi::class)->everyTwoHours();
         // $schedule->command(GetIksm::class)->cron('* * * * *');
     }
 

@@ -10,13 +10,25 @@ namespace App\Http\Controllers;
 //use App\Models\StaticPage;
 //use App\Models\SystemSettings;
 //use App\Models\User;
+use App\Models\IksmSession;
+use App\Models\PlayerGeneralStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index(){
-    	return view('home');
+        $data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/records");
+
+        $records = $data->records;
+        $festivals = $data->festivals;
+        $challenges = $data->challenges;
+
+        $player_general_status = PlayerGeneralStatus::getAllPlayerGeneralStatus();
+
+        // dd($data);
+
+    	return view('home')->with(['records' => $records,'festivals' => $festivals,'challenges' => $challenges,'player_general_status' => $player_general_status]);
     	//return view('home')->with(['withBanner' => true, 'categories' => $categories,'default_trending_category' => $default_trending_category, 'categoryProducts' => $categoryProducts, 'pickupProducts' => $pickupProducts, 'about_kitco' => $about_kitco, 'first_time_enter' => $first_time_enter]);
     }
 

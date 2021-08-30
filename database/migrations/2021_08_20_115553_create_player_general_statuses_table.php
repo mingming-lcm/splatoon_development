@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlayerGeneralStatusTable extends Migration
+class CreatePlayerGeneralStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePlayerGeneralStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('player_general_status', function (Blueprint $table) {
+        Schema::create('player_general_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('player_id');
             $table->string('nickname');
@@ -38,6 +38,6 @@ class CreatePlayerGeneralStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('player_general_status');
+        Schema::dropIfExists('player_general_statuses');
     }
 }

@@ -187,7 +187,7 @@ class GetSplatoonApi extends Command
 
         $records = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/records");
 
-        $my_records = new PlayerGeneralStatus();
+        $my_records = PlayerGeneralStatus::firstOrNew(array("nickname" => "ρ∂¤メンメン"));
         $my_records->player_id = $records->records->player->principal_id;
         $my_records->nickname = $records->records->player->nickname;
         $my_records->player_rank = $records->records->player->player_rank;

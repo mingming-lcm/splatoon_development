@@ -1,7 +1,13 @@
+@font-face {
+	font-family: "Splatoon";
+	src: url("../../fonts/GrinchedRegular.ttf");
+}
+
 body{
 	background-color: #000;	
   	cursor: url('../../images/splatoon2/splatoon2_orange_squid.cur'), auto;
   	color: #fff;	
+	font-family: "Splatoon";
 }
 a{
 	color: #fff;

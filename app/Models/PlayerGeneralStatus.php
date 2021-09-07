@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 class PlayerGeneralStatus extends Model
 {
+    protected $fillable = ['nickname'];
+
     public static function boot()
     {
         parent::boot();

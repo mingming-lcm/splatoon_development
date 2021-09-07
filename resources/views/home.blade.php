@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('description', __('面面的花枝工房'))
 
 @section('content')
 

@@ -3,11 +3,16 @@
 	src: url("../../fonts/GrinchedRegular.ttf");
 }
 
+@font-face {
+	font-family: "Splatoon Chinese";
+	src: url("../../fonts/SNsanafonmaruP.ttf");
+}
+
 body{
 	background-color: #000;	
   	cursor: url('../../images/splatoon2/splatoon2_orange_squid.cur'), auto;
   	color: #fff;	
-	font-family: "Splatoon";
+	font-family: "Splatoon", "Splatoon Chinese";
 }
 a{
 	color: #fff;

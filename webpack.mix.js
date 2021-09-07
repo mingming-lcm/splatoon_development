@@ -20,6 +20,7 @@ mix.js('resources/js/bootstrap.bundle.min.js', 'public/js')
     .postCss('resources/css/bootstrap.min.css', 'public/css', [
         //
     ]);
-mix.copy('resources/images', 'public/images');
+mix.copyDirectory('resources/images', 'public/images');
+mix.copyDirectory('resources/fonts', 'public/fonts');
 mix.js('resources/js/app.js', 'public/js');
 mix.sass('resources/css/sass/app.scss', 'public/css').version().minify('public/css/app.css');

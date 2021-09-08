@@ -45,6 +45,14 @@ a::selection{
 	width: 100%;
 }
 
+.section{
+	margin: 30px 0px;
+	
+	.section_title{
+		font-size: 40px;
+	}
+}
+
 .header .title{
 	width: 100%;
 	text-align: center;

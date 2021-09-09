@@ -19,6 +19,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/update_iksm', 'HomeController@update_iksm')->name('update_iksm');
 Route::get('/get_iksm', 'HomeController@get_iksm')->name('get_iksm');
+
+Route::get('/api_test', 'HomeController@api_test')->name('api_test');
+
 Route::get('/timetable', 'TimetableController@index')->name('timetable');
 Route::get('/record', 'RecordController@index')->name('record');
 

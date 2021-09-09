@@ -32,6 +32,13 @@ class HomeController extends Controller
     	//return view('home')->with(['withBanner' => true, 'categories' => $categories,'default_trending_category' => $default_trending_category, 'categoryProducts' => $categoryProducts, 'pickupProducts' => $pickupProducts, 'about_kitco' => $about_kitco, 'first_time_enter' => $first_time_enter]);
     }
 
+    public function api_test()
+    {
+        $data = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/records");
+
+        dd($data);
+    }
+
     public function update_iksm()
     {
     	return view('pages.update_iksm');

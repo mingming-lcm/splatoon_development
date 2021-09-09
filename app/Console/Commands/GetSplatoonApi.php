@@ -9,6 +9,8 @@ use App\Models\Result;
 use App\Models\Timetable;
 use App\Models\TeammatesResult;
 use App\Models\PlayerGeneralStatus;
+use App\Models\PlayerMedalsStatus;
+use App\Models\PlayerWeaponsStatus;
 use Illuminate\Support\Facades\Log;
 
 class GetSplatoonApi extends Command
@@ -204,6 +206,21 @@ class GetSplatoonApi extends Command
         $my_records->start_time = $records->records->start_time;
         $my_records->save();
 
+
+        foreach($records->records->league_stats as $league_type => $medals_array ){
+            foreach($medals_array as $medals_type => $medals_count){
+                if(PlayerMedalsStatus::getMedalsByType( $league_type , substr($medals_type,-6) )){
+                    continue;
+                }   
+
+                $my_medals_records = new PlayerMedalsStatus();
+                $my_medals_records->player_id = $records->records->player->principal_id;
+                $my_medals_records->league_type = $league_type;
+                $my_medals_records->medals_type = substr($medals_type,-6);
+                $my_medals_records->medals_count = $medals_count;
+                $my_medals_records->save();
+            }
+        }
 
         Log::notice("API Command Done.");
 

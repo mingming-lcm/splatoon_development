@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('主頁'))
+
 @section('description', __('面面的花枝工房'))
 
 @section('content')
@@ -17,13 +19,13 @@
 	<div class="section">
 		<div class="section_title"> 面面簡介：</div>
 		<div>
-			遊戲名稱：{{ $player_general_status->nickname }}
+			遊戲名稱： {{ $player_general_status->nickname }}
 		</div>
 		<div>
-			遊戲等級：{{ $player_general_status->player_rank }} (星數： {{ $player_general_status->star_rank }})
+			遊戲等級： {{ $player_general_status->player_rank }} (星數： {{ $player_general_status->star_rank }})
 		</div>
 		<div>
-			遊戲角色：{{ $player_general_status->player_gender }} {{ $player_general_status->player_type }}
+			遊戲角色： {{ $player_general_status->player_gender }} {{ $player_general_status->player_type }}
 		</div>
 		<div>
 			面面轉生時間： {{ date('Y-m-d H:i:s',$player_general_status->start_time) }} 

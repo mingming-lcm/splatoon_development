@@ -12,7 +12,7 @@
 		
 			<?php for($i=0;$i < count($data);$i++){ ?>
 
-				<a class="row" href="{{ route('result.detail',['battle_number' => $data[$i]->battle_number]) }}">
+				<a class="row result_box" href="{{ route('result.detail',['battle_number' => $data[$i]->battle_number]) }}">
 					<div class="results_item col-xs-12 col-sm-6">
 						<div class="results_mode">
 							{{ $modes::getModeByCode($data[$i]->mode)->name }}
@@ -64,10 +64,10 @@
 								</div>
 
 								<div class="results_maps_a">
-									<span style="color: red;"><?php echo $data[$i]->my_team_count;?></span> count (我們)
+									<span style="color: IndianRed;"><?php echo $data[$i]->my_team_count;?></span> count (我們)
 
 								vs
-									<span style="color: red;"><?php echo $data[$i]->other_team_count;?></span> count (對面)
+									<span style="color: green;"><?php echo $data[$i]->other_team_count;?></span> count (對面)
 								</div>
 							</div>
 						<?php }else{ ?>
@@ -79,14 +79,14 @@
 									時間：<?=date("i:s",$data[$i]->elapsed_time);?>
 								</div>
 								<div class="results_maps_a">
-									<span style="color: red;"><?php echo $data[$i]->my_team_count;?></span> count (我們) （推定戰力：<span style="color: red;"><?php echo $data[$i]->my_estimate_league_point;?></span>）
+									<span style="color: IndianRed;"><?php echo $data[$i]->my_team_count;?></span> count (我們) （推定戰力：<span style="color: IndianRed;"><?php echo $data[$i]->my_estimate_league_point;?></span>）
 								</div>
 								<div>
 								vs	
 								</div>
 								
 								<div class="results_maps_a">
-									<span style="color: red;"><?php echo $data[$i]->other_team_count;?></span> count (對面)（推定戰力：<span style="color: red;"><?php echo $data[$i]->other_estimate_league_point;?></span>）
+									<span style="color: green;"><?php echo $data[$i]->other_team_count;?></span> count (對面)（推定戰力：<span style="color: green;"><?php echo $data[$i]->other_estimate_league_point;?></span>）
 								</div>
 							</div>
 						<?php } ?>
@@ -107,6 +107,22 @@
 						<div class="results_maps_image">
 							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$data[$i]->map_id]['image']?>" />
 
+						</div>
+					</div>
+					<?php  
+						if($data[$i]->mode == "regular"){
+							$my_count_percentage =  $data[$i]->my_team_percentage == 0 ? 0 : ($data[$i]->my_team_percentage)/($data[$i]->my_team_percentage + $data[$i]->other_team_percentage) * 100;
+							$other_count_percentage = $data[$i]->other_team_percentage == 0 ? 0 : ($data[$i]->other_team_percentage) / ($data[$i]->my_team_percentage + $data[$i]->other_team_percentage) * 100;
+						}else {
+							$my_count_percentage =  $data[$i]->my_team_count == 0 ? 0 : ($data[$i]->my_team_count)/($data[$i]->my_team_count + $data[$i]->other_team_count) * 100;
+							$other_count_percentage = $data[$i]->other_team_count == 0 ? 0 : ($data[$i]->other_team_count) / ($data[$i]->my_team_count + $data[$i]->other_team_count) * 100;
+						} 
+					?>
+
+					<div class="result_bar col-xs-12"> 
+						<div class="row">
+							<div style="padding:0px;display:inline-block;background-color:IndianRed;width:<?php echo $my_count_percentage;?>%;height:20px;"></div>
+							<div style="padding:0px;display:inline-block;background-color:green;width:<?php echo $other_count_percentage;?>%;height:20px;"></div>
 						</div>
 					</div>
 				</a>

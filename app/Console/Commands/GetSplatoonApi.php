@@ -209,14 +209,14 @@ class GetSplatoonApi extends Command
 
         foreach($records->records->league_stats as $league_type => $medals_array ){
             foreach($medals_array as $medals_type => $medals_count){
-                if(PlayerMedalsStatus::getMedalsByType( $league_type , substr($medals_type,-6) )){
+                if(PlayerMedalsStatus::getMedalsByType( $league_type , substr($medals_type, 0, -6) )){
                     continue;
                 }   
 
                 $my_medals_records = new PlayerMedalsStatus();
                 $my_medals_records->player_id = $records->records->player->principal_id;
                 $my_medals_records->league_type = $league_type;
-                $my_medals_records->medals_type = substr($medals_type,-6);
+                $my_medals_records->medals_type = substr($medals_type, 0, -6);
                 $my_medals_records->medals_count = $medals_count;
                 $my_medals_records->save();
             }

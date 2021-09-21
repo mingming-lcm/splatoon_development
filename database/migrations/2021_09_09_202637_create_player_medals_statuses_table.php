@@ -18,6 +18,7 @@ class CreatePlayerMedalsStatusesTable extends Migration
             $table->string('player_id');            
             $table->string('league_type');            
             $table->string('medals_type');            
+            $table->integer('sort_order');            
             $table->integer('medals_count');            
             $table->timestamps();
         });

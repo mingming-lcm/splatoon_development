@@ -91,6 +91,53 @@ a::selection{
 	color: #fff;
 	padding-bottom: 20px;
 }
+
+
+/************** Home **************/
+.total_win_count{
+	color: pink;
+}
+
+.total_lose_count{
+	color: green;
+}
+
+.total_paint_count{
+	background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+	-webkit-background-clip: text;
+	color: transparent;  
+}
+
+.league_stats_type{
+	margin: 30px 0px;
+
+	.league_stats{
+		&_highest{
+			color: red;
+		}
+
+		&_gold_number{
+			color: gold;
+		}
+
+		&_silver_number{
+			color: silver;
+		}
+
+		&_bronze_number{
+			color: brown;
+		}
+		
+		&_no_medal_number{
+			color: grey;
+		}
+
+	}
+}
+/************** Home **************/
+
+
+
 .schedules_table{
 	width: 100%;
 }

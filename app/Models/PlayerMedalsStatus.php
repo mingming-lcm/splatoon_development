@@ -30,4 +30,17 @@ class PlayerMedalsStatus extends Model
             ->where('medals_type', $medals_type)
             ->first();
     }
+
+    public static function getMedalsByTeam()
+    {
+        return self::where('league_type', 'team')
+            ->orderBy('sort_order')
+            ->get();
+    }
+    public static function getMedalsByPair()
+    {
+        return self::where('league_type', 'pair')
+            ->orderBy('sort_order')
+            ->get();
+    }
 }

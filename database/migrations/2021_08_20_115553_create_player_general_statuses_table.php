@@ -25,6 +25,7 @@ class CreatePlayerGeneralStatusesTable extends Migration
             $table->string('max_league_point_team');
             $table->string('win_count');
             $table->string('lose_count');
+            $table->string('total_paint_point');
             $table->string('recent_disconnect_count');
             $table->string('start_time');
             $table->timestamps();

@@ -56,6 +56,21 @@ class GetSplatoonApi extends Command
         //api links https://app.splatoon2.nintendo.net/api/onlineshop/merchandises
         //api links https://app.splatoon2.nintendo.net/api/results
 
+        $medals = [
+			"gold_count" => [
+				"order" => 0,
+			] ,
+			"silver_count"=>[
+				"order" => 1,
+			] ,
+			"bronze_count" => [
+				"order" => 2,
+			] ,	
+            "no_medal_count" => [
+				"order" => 3,
+			] ,	
+		];
+
 
         $results = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results");
 
@@ -202,6 +217,7 @@ class GetSplatoonApi extends Command
         
         $my_records->win_count = $records->records->win_count;
         $my_records->lose_count = $records->records->lose_count;
+        $my_records->total_paint_point = $records->challenges->total_paint_point;
         $my_records->recent_disconnect_count = $records->records->recent_disconnect_count;
         $my_records->start_time = $records->records->start_time;
         $my_records->save();
@@ -217,6 +233,7 @@ class GetSplatoonApi extends Command
                 $my_medals_records->player_id = $records->records->player->principal_id;
                 $my_medals_records->league_type = $league_type;
                 $my_medals_records->medals_type = substr($medals_type, 0, -6);
+                $my_medals_records->sort_order = $medals[$medals_type]['order'];
                 $my_medals_records->medals_count = $medals_count;
                 $my_medals_records->save();
             }

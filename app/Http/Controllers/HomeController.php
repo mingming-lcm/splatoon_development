@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 //use App\Models\User;
 use App\Models\IksmSession;
 use App\Models\PlayerGeneralStatus;
+use App\Models\PlayerMedalsStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,11 +25,21 @@ class HomeController extends Controller
         $festivals = $data->festivals;
         $challenges = $data->challenges;
 
+
         $player_general_status = PlayerGeneralStatus::getAllPlayerGeneralStatus();
+        $player_medals_statuses_team = PlayerMedalsStatus::getMedalsByTeam();
+        $player_medals_statuses_pair = PlayerMedalsStatus::getMedalsByPair();
 
-        // dd($data);
+        // dd($player_medals_statuses_team);
 
-    	return view('home')->with(['records' => $records,'festivals' => $festivals,'challenges' => $challenges,'player_general_status' => $player_general_status]);
+    	return view('home')->with([
+            'records' => $records,
+            'festivals' => $festivals,
+            'challenges' => $challenges,
+            'player_general_status' => $player_general_status ,
+            'player_medals_statuses_team' => $player_medals_statuses_team,
+            'player_medals_statuses_pair' => $player_medals_statuses_pair
+        ]);
     	//return view('home')->with(['withBanner' => true, 'categories' => $categories,'default_trending_category' => $default_trending_category, 'categoryProducts' => $categoryProducts, 'pickupProducts' => $pickupProducts, 'about_kitco' => $about_kitco, 'first_time_enter' => $first_time_enter]);
     }
 

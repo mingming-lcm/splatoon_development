@@ -1,196 +1,299 @@
-body{
-	background-color: #000;	
-  	cursor: url('../images/splatoon2/splatoon2_orange_squid.cur'), auto;
-  	color: #fff;	
-}
-a{
-	color: #fff;
-	text-decoration: none;
-}
-a:hover{
-	color: #fff;
-	text-decoration: none;
-	cursor: url('../images/splatoon2/splatoon2_reticle_green.cur'), auto;	
-}
-a::selection{
-	cursor: url('../images/splatoon2/splatoon2_orange_squid_alternate.cur'), auto;
+@font-face {
+  font-family: "Splatoon";
+  src: url("../../fonts/Splatoon1.otf");
 }
 
-.background{
-	background-color: #000;
+@font-face {
+  font-family: "Splatoon Chinese";
+  src: url("../../fonts/SNsanafonmaruP.woff"), url("../../fonts/SNsanafonmaruP.ttf");
 }
 
-.welcome_message{
-	color: #fff;
-	font-size: 40px;
-	text-align: center;
-	width: 100%;
+body {
+  background-color: #000;
+  cursor: url("../../images/splatoon2/splatoon2_orange_squid.cur"), auto;
+  color: #fff;
+  font-size: 20px;
+  font-family: "Splatoon", "Splatoon Chinese";
 }
 
-.header .title{
-	width: 100%;
-	text-align: center;
-	font-size: 40px;
-	margin: auto;
-	padding: 20px 0px 20px;
+a {
+  color: #fff;
+  text-decoration: none;
 }
 
-.menu{
-	width: 100%;
-	max-width: 960px;
-	padding: 20px;
-	margin: auto;
-	text-align: center;
+a:hover {
+  color: #fff;
+  text-decoration: none;
+  cursor: url("../../images/splatoon2/splatoon2_reticle_green.cur"), auto;
 }
 
-.menu_item{
-	text-decoration: none;
-	width: 200px;
-	color: #ddd;
-	display: inline-block;
-	padding: 15px 10px 15px;
-	background-image: url('../images/splatoon2/splatoon2_textbox_bg.png');
-	background-size: contain;
-	background-position: center center;
-	background-repeat: no-repeat;
+a::-moz-selection {
+  cursor: url("../../images/splatoon2/splatoon2_orange_squid_alternate.cur"), auto;
 }
 
-.content{
-	padding: 30px;
+a::selection {
+  cursor: url("../../images/splatoon2/splatoon2_orange_squid_alternate.cur"), auto;
 }
 
-.title{
-	font-size: 30px;
-	color: #fff;
-	padding-bottom: 20px;
-}
-.schedules_table{
-	width: 100%;
-}
-.schedules_column{
-	width: 33%;
-	float: left;
-	display: inline-block;
-	border: 1px solid #fff;
-}
-.schedules_mode{
-	font-size: 24px;
-	color: IndianRed;
-	padding: 10px;
+.background {
+  background-color: #000;
 }
 
-.schedules_mode .regular{
-
-}
-.schedules_mode .gachi{
-
-}
-.schedules_mode .league{
-
+/************** colors ***************/
+.red {
+  color: red;
 }
 
-.schedules_item{
-	border: 1px solid #fff;
-	padding: 20px 10px 20px;
-}
-.schedules_time{
-	font-size: 24px;
-	color: pink;
-}
-.schedules_rules{
-	/*color: Lightgreen;*/
-}
-.schedules_maps{
-	color: Lightyellow;
-}
-.schedules_maps_image{
-	padding-bottom: 20px;
-}
-.schedules_maps_image img{
-	width: 100%;
+/************** colors ***************/
+.welcome_message {
+  color: #fff;
+  font-size: 40px;
+  text-align: center;
+  width: 100%;
 }
 
-
-
-.results_table{
-	width: 100%;
-}
-.results_column{
-	width: 100%;
-}
-.results_mode{
-	font-size: 24px;
-	padding: 10px 0px;
+.section {
+  margin: 30px 0px;
 }
 
-.results_mode .regular{
-
-}
-.results_mode .gachi{
-
-}
-.results_mode .league{
-
+.section .section_title {
+  font-size: 40px;
 }
 
-.results_result_victory{
-	color: IndianRed;
-}
-.results_result_lose{
-	color: green;
-}
-
-.results_item{
-	border: 1px solid #fff;
-	padding: 20px;
-}
-.results_item:nth-child(1){
-	border-right: none;
-}
-.results_item:nth-child(2){
-	border-left: none;
+.header .title {
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  margin: auto;
+  padding: 20px 0px 20px;
 }
 
-.results_time{
-	font-size: 24px;
-	color: pink;
-}
-.results_rules{
-	/*color: Lightgreen;*/
-}
-.results_maps{
-	color: Lightyellow;
-}
-.results_maps_name{
-	padding: 0px 0px 20px;
-}
-.results_maps_image{
-	padding-bottom: 20px;
-}
-.results_maps_image img{
-	width: 100%;
+.menu {
+  width: 100%;
+  max-width: 960px;
+  padding: 20px;
+  margin: auto;
+  text-align: center;
 }
 
-
-.results_detail_item{
-	border: 1px solid #fff;
-	padding: 20px;
+.menu_item {
+  display: inline-block;
 }
+
+.btn {
+  text-decoration: none;
+  width: 200px;
+  color: #ddd;
+  padding: 15px 10px 15px;
+  background-image: url("../../images/splatoon2/splatoon2_textbox_bg.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.content {
+  padding: 30px;
+}
+
+.title {
+  font-size: 30px;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+/************** Home **************/
+.total_win_count {
+  color: pink;
+}
+
+.total_lose_count {
+  color: green;
+}
+
+.total_paint_count {
+  background-image: -webkit-gradient(linear, right top, left top, from(violet), color-stop(indigo), color-stop(blue), color-stop(green), color-stop(yellow), color-stop(orange), to(red));
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.league_stats_type {
+  margin: 30px 0px;
+}
+
+.league_stats_type .league_stats_highest {
+  color: red;
+}
+
+.league_stats_type .league_stats_gold_number {
+  color: gold;
+}
+
+.league_stats_type .league_stats_silver_number {
+  color: silver;
+}
+
+.league_stats_type .league_stats_bronze_number {
+  color: brown;
+}
+
+.league_stats_type .league_stats_no_medal_number {
+  color: grey;
+}
+
+/************** Home **************/
+.schedules_table {
+  width: 100%;
+}
+
+.schedules_column {
+  width: 33%;
+  float: left;
+  display: inline-block;
+  border: 1px solid #fff;
+}
+
+.schedules_mode {
+  font-size: 24px;
+  color: IndianRed;
+  padding: 10px;
+}
+
+.schedules_item {
+  border: 1px solid #fff;
+  padding: 20px 10px 20px;
+}
+
+@media (max-width: 992px) {
+  .schedules_item {
+    border: none;
+    border-bottom: 1px solid #fff;
+  }
+}
+
+.schedules_time {
+  font-size: 24px;
+  color: pink;
+}
+
+.schedules_rules {
+  /*color: Lightgreen;*/
+}
+
+.schedules_maps {
+  color: Lightyellow;
+}
+
+.schedules_maps_image {
+  padding-bottom: 20px;
+}
+
+.schedules_maps_image img {
+  width: 100%;
+}
+
+.accordion-button {
+  background-color: #000;
+  color: #ddd;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #000;
+}
+
+.accordion-body {
+  background-color: #000;
+}
+
+.results_table {
+  width: 100%;
+}
+
+.results_column {
+  width: 100%;
+}
+
+.results_mode {
+  font-size: 24px;
+  padding: 10px 0px;
+}
+
+.results_result_victory {
+  color: IndianRed;
+}
+
+.results_result_lose {
+  color: green;
+}
+
+.result_box {
+  margin: 30px 0px;
+}
+
+.results_item {
+  border: 1px solid #fff;
+  padding: 20px;
+  border-bottom: 0px;
+}
+
+.results_item:nth-child(1) {
+  border-right: none;
+}
+
+.results_item:nth-child(2) {
+  border-left: none;
+}
+
+.result_bar {
+  border: 1px solid #fff;
+  border-top: 0px;
+  padding-top: 20px;
+}
+
+.results_time {
+  font-size: 24px;
+  color: pink;
+}
+
+.results_rules {
+  /*color: Lightgreen;*/
+}
+
+.results_maps {
+  color: Lightyellow;
+}
+
+.results_maps_name {
+  padding: 0px 0px 20px;
+}
+
+.results_maps_image {
+  padding-bottom: 20px;
+}
+
+.results_maps_image img {
+  width: 100%;
+}
+
+.results_detail_item {
+  border: 1px solid #fff;
+  padding: 20px;
+}
+
 /*.results_detail_item:nth-child(2){
 	border-right: none;
 }
 .results_detail_item:nth-child(3){
 	border-left: none;
 }*/
-
-
-@media (max-width: 575px){
-	.results_item:nth-child(1){
-		border: 1px solid #fff;
-		border-bottom: none;
-	}
-	.results_item:nth-child(2){
-		border: 1px solid #fff;
-		border-top: none;
-	}
+@media (max-width: 575px) {
+  .results_item:nth-child(1) {
+    border: 1px solid #fff;
+    border-bottom: none;
+  }
+  .results_item:nth-child(2) {
+    border: 1px solid #fff;
+    border-top: none;
+  }
 }
+/*# sourceMappingURL=app.css.map */

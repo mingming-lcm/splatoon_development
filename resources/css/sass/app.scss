@@ -71,10 +71,13 @@ a::selection{
 }
 
 .menu_item{
+	display: inline-block;	
+}
+
+.btn{
 	text-decoration: none;
 	width: 200px;
 	color: #ddd;
-	display: inline-block;
 	padding: 15px 10px 15px;
 	background-image: url('../../images/splatoon2/splatoon2_textbox_bg.png');
 	background-size: contain;

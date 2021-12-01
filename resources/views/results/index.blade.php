@@ -7,7 +7,7 @@
 <div class="title">
 	Splatoon2 50場紀錄
 </div>
-<div class="btn">即時更新</div>
+<a href="{{ route('update_api') }}" id="instance_update" class="btn">即時更新</a>
 <div class="results_table">
 	<div class="results_column">
 		

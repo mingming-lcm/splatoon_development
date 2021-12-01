@@ -3,11 +3,6 @@
 namespace App\Http\Controllers;
 
 //use App\Models\EmailTemplate;
-//use App\Models\Order;
-//use App\Models\Product;
-//use App\Models\ProductCategory;
-//use App\Models\NewsletterSubscription;
-//use App\Models\StaticPage;
 //use App\Models\SystemSettings;
 //use App\Models\User;
 use App\Models\IksmSession;
@@ -15,6 +10,7 @@ use App\Models\PlayerGeneralStatus;
 use App\Models\PlayerMedalsStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller
 {
@@ -53,6 +49,12 @@ class HomeController extends Controller
     public function update_iksm()
     {
     	return view('pages.update_iksm');
+    }
+
+    public function update_api()
+    {
+        Artisan::call("splatoon:get_api");
+    	return redirect()->back();
     }
 
     public function get_iksm(Request $request)

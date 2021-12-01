@@ -1,7 +1,17 @@
+@font-face {
+  font-family: "Splatoon";
+  src: url(/fonts/Splatoon1.otf?3c8e88721723a51c82d6e7587bdd1594);
+}
+@font-face {
+  font-family: "Splatoon Chinese";
+  src: url(/fonts/SNsanafonmaruP.woff?ae29faca5ea0ede8d268ec3dc782ae65), url(/fonts/SNsanafonmaruP.ttf?40813c2590b183343315a2d5303268ae);
+}
 body {
   background-color: #000;
   cursor: url(/splatoon2_orange_squid.cur?8a71107c79c8d114493f0c6b9a1cc067), auto;
   color: #fff;
+  font-size: 20px;
+  font-family: "Splatoon", "Splatoon Chinese";
 }
 
 a {
@@ -40,6 +50,13 @@ a::selection {
   width: 100%;
 }
 
+.section {
+  margin: 30px 0px;
+}
+.section .section_title {
+  font-size: 40px;
+}
+
 .header .title {
   width: 100%;
   text-align: center;
@@ -62,7 +79,7 @@ a::selection {
   color: #ddd;
   display: inline-block;
   padding: 15px 10px 15px;
-  background-image: url(/images/splatoon2_textbox_bg.png?24311e00d1a59d8e6cc207b08f927bd7);
+  background-image: url(/images/splatoon2_textbox_bg.png?4ee4f8fc7f0f9c0ed79ac146fe9a9efe);
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -78,6 +95,41 @@ a::selection {
   padding-bottom: 20px;
 }
 
+/************** Home **************/
+.total_win_count {
+  color: pink;
+}
+
+.total_lose_count {
+  color: green;
+}
+
+.total_paint_count {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.league_stats_type {
+  margin: 30px 0px;
+}
+.league_stats_type .league_stats_highest {
+  color: red;
+}
+.league_stats_type .league_stats_gold_number {
+  color: gold;
+}
+.league_stats_type .league_stats_silver_number {
+  color: silver;
+}
+.league_stats_type .league_stats_bronze_number {
+  color: brown;
+}
+.league_stats_type .league_stats_no_medal_number {
+  color: grey;
+}
+
+/************** Home **************/
 .schedules_table {
   width: 100%;
 }
@@ -161,9 +213,14 @@ a::selection {
   color: green;
 }
 
+.result_box {
+  margin: 30px 0px;
+}
+
 .results_item {
   border: 1px solid #fff;
   padding: 20px;
+  border-bottom: 0px;
 }
 
 .results_item:nth-child(1) {
@@ -172,6 +229,12 @@ a::selection {
 
 .results_item:nth-child(2) {
   border-left: none;
+}
+
+.result_bar {
+  border: 1px solid #fff;
+  border-top: 0px;
+  padding-top: 20px;
 }
 
 .results_time {

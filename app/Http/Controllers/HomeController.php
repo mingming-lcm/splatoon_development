@@ -48,7 +48,7 @@ class HomeController extends Controller
 
     public function update_iksm()
     {
-    	return view('pages.update_iksm');
+    	return view('pages.update_iksm');  
     }
 
     public function update_api()

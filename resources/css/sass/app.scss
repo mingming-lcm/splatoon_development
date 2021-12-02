@@ -5,56 +5,55 @@
 
 @font-face {
 	font-family: "Splatoon Chinese";
-	src: url("../../fonts/SNsanafonmaruP.woff"),
-			url("../../fonts/SNsanafonmaruP.ttf");
+	src: url("../../fonts/SNsanafonmaruP.woff"), url("../../fonts/SNsanafonmaruP.ttf");
 }
 
-body{
-	background-color: #000;	
-  	cursor: url('../../images/splatoon2/splatoon2_orange_squid.cur'), auto;
-  	color: #fff;	
+body {
+	background-color: #000;
+	cursor: url("../../images/splatoon2/splatoon2_orange_squid.cur"), auto;
+	color: #fff;
 	font-size: 20px;
 	font-family: "Splatoon", "Splatoon Chinese";
 }
-a{
+a {
 	color: #fff;
 	text-decoration: none;
 }
-a:hover{
+a:hover {
 	color: #fff;
 	text-decoration: none;
-	cursor: url('../../images/splatoon2/splatoon2_reticle_green.cur'), auto;	
+	cursor: url("../../images/splatoon2/splatoon2_reticle_green.cur"), auto;
 }
-a::selection{
-	cursor: url('../../images/splatoon2/splatoon2_orange_squid_alternate.cur'), auto;
+a::selection {
+	cursor: url("../../images/splatoon2/splatoon2_orange_squid_alternate.cur"), auto;
 }
 
-.background{
+.background {
 	background-color: #000;
 }
 
 /************** colors ***************/
-.red{
+.red {
 	color: red;
 }
 /************** colors ***************/
 
-.welcome_message{
+.welcome_message {
 	color: #fff;
 	font-size: 40px;
 	text-align: center;
 	width: 100%;
 }
 
-.section{
+.section {
 	margin: 30px 0px;
-	
-	.section_title{
+
+	.section_title {
 		font-size: 40px;
 	}
 }
 
-.header .title{
+.header .title {
 	width: 100%;
 	text-align: center;
 	font-size: 40px;
@@ -62,7 +61,7 @@ a::selection{
 	padding: 20px 0px 20px;
 }
 
-.menu{
+.menu {
 	width: 100%;
 	max-width: 960px;
 	padding: 20px;
@@ -70,103 +69,96 @@ a::selection{
 	text-align: center;
 }
 
-.menu_item{
-	display: inline-block;	
+.menu_item {
+	display: inline-block;
 }
 
-.btn{
+.btn {
 	text-decoration: none;
 	width: 200px;
 	color: #ddd;
 	padding: 15px 10px 15px;
-	background-image: url('../../images/splatoon2/splatoon2_textbox_bg.png');
+	background-image: url("../../images/splatoon2/splatoon2_textbox_bg.png");
 	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
 }
 
-.content{
+.content {
 	padding: 30px;
 }
 
-.title{
+.title {
 	font-size: 30px;
 	color: #fff;
 	padding-bottom: 20px;
 }
 
-
 /************** Home **************/
-.total_win_count{
+.total_win_count {
 	color: pink;
 }
 
-.total_lose_count{
+.total_lose_count {
 	color: green;
 }
 
-.total_paint_count{
+.total_paint_count {
 	background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
 	-webkit-background-clip: text;
-	color: transparent;  
+	color: transparent;
 }
 
-.league_stats_type{
+.league_stats_type {
 	margin: 30px 0px;
 
-	.league_stats{
-		&_highest{
+	.league_stats {
+		&_highest {
 			color: red;
 		}
 
-		&_gold_number{
+		&_gold_number {
 			color: gold;
 		}
 
-		&_silver_number{
+		&_silver_number {
 			color: silver;
 		}
 
-		&_bronze_number{
+		&_bronze_number {
 			color: brown;
 		}
-		
-		&_no_medal_number{
+
+		&_no_medal_number {
 			color: grey;
 		}
-
 	}
 }
 /************** Home **************/
 
-
-
-.schedules_table{
+.schedules_table {
 	width: 100%;
 }
-.schedules_column{
+.schedules_column {
 	width: 33%;
 	float: left;
 	display: inline-block;
 	border: 1px solid #fff;
 }
-.schedules_mode{
+.schedules_mode {
 	font-size: 24px;
 	color: IndianRed;
 	padding: 10px;
 }
 
-.schedules_mode .regular{
-
+.schedules_mode .regular {
 }
-.schedules_mode .gachi{
-
+.schedules_mode .gachi {
 }
-.schedules_mode .league{
-
+.schedules_mode .league {
 }
 
-.schedules_item{
+.schedules_item {
 	border: 1px solid #fff;
 	padding: 20px 10px 20px;
 
@@ -175,28 +167,28 @@ a::selection{
 		border-bottom: 1px solid #fff;
 	}
 }
-.schedules_time{
+.schedules_time {
 	font-size: 24px;
 	color: pink;
 }
-.schedules_rules{
+.schedules_rules {
 	/*color: Lightgreen;*/
 }
-.schedules_maps{
+.schedules_maps {
 	color: Lightyellow;
 }
-.schedules_maps_image{
+.schedules_maps_image {
 	padding-bottom: 20px;
 }
-.schedules_maps_image img{
+.schedules_maps_image img {
 	width: 100%;
 }
 
-.accordion-button{
+.accordion-button {
 	background-color: #000;
 	color: #ddd;
 }
-.accordion-button:not(.collapsed){
+.accordion-button:not(.collapsed) {
 	background-color: #000;
 }
 
@@ -204,81 +196,91 @@ a::selection{
 	background-color: #000;
 }
 
-
-.results_table{
+.results_table {
 	width: 100%;
 }
-.results_column{
+.results_column {
 	width: 100%;
 }
-.results_mode{
+.results_mode {
 	font-size: 24px;
 	padding: 10px 0px;
 }
 
-.results_mode .regular{
-
+.results_mode .regular {
 }
-.results_mode .gachi{
-
+.results_mode .gachi {
 }
-.results_mode .league{
-
+.results_mode .league {
 }
 
-.results_result_victory{
+.results_result_victory {
 	color: IndianRed;
 }
-.results_result_lose{
+.results_result_lose {
 	color: green;
 }
 
-
-.result_box{
+.result_box {
 	margin: 30px 0px;
 }
 
-.results_item{
+.results_item {
 	border: 1px solid #fff;
 	padding: 20px;
 	border-bottom: 0px;
 }
-.results_item:nth-child(1){
+.results_item:nth-child(1) {
 	border-right: none;
 }
-.results_item:nth-child(2){
+.results_item:nth-child(2) {
 	border-left: none;
 }
 
-.result_bar{
+.result_bar {
 	border: 1px solid #fff;
 	border-top: 0px;
 	padding-top: 20px;
+
+	.point_result {
+		padding: 0px;
+		display: inline-block;
+		height: 20px;
+
+		&.our_team_result {
+			background-color: radial-gradient(circle, rgba(236,9,170,1) 18%, rgba(158,5,139,1) 100%);
+		}
+
+		&.other_team_result {
+			background-color: radial-gradient(circle, rgba(53,209,38,1) 18%, rgba(5,158,118,1) 100%);
+		}
+	}
 }
 
+results_rules {
+}
 
-.results_time{
+.results_time {
 	font-size: 24px;
 	color: pink;
 }
-.results_rules{
+.results_rules {
 	/*color: Lightgreen;*/
 }
-.results_maps{
+.results_maps {
 	color: Lightyellow;
 }
-.results_maps_name{
+.results_maps_name {
 	padding: 0px 0px 20px;
 }
-.results_maps_image{
+.results_maps_image {
 	padding-bottom: 20px;
 }
-.results_maps_image img{
+.results_maps_image img {
 	width: 100%;
 }
 
-
-.results_detail_item{
+.results_detail_item {
 	border: 1px solid #fff;
 	padding: 20px;
 }
@@ -289,13 +291,12 @@ a::selection{
 	border-left: none;
 }*/
 
-
-@media (max-width: 575px){
-	.results_item:nth-child(1){
+@media (max-width: 575px) {
+	.results_item:nth-child(1) {
 		border: 1px solid #fff;
 		border-bottom: none;
 	}
-	.results_item:nth-child(2){
+	.results_item:nth-child(2) {
 		border: 1px solid #fff;
 		border-top: none;
 	}

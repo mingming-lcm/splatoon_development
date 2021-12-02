@@ -123,8 +123,8 @@
 
 					<div class="result_bar col-xs-12"> 
 						<div class="row">
-							<div style="padding:0px;display:inline-block;background-color:IndianRed;width:<?php echo $my_count_percentage;?>%;height:20px;"></div>
-							<div style="padding:0px;display:inline-block;background-color:green;width:<?php echo $other_count_percentage;?>%;height:20px;"></div>
+							<div class="point_result our_team_result" style="width:<?php echo $my_count_percentage;?>%;"></div>
+							<div class="point_result other_team_result" style="width:<?php echo $other_count_percentage;?>%;"></div>
 						</div>
 					</div>
 				</a>

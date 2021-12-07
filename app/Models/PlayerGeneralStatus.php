@@ -21,7 +21,7 @@ class PlayerGeneralStatus extends Model
 
     public static function getAllPlayerGeneralStatus()
     {
-        return self::orderBy("id", "ASC")
+        return self::orderBy("id", "DESC")
             ->first();
     }
 

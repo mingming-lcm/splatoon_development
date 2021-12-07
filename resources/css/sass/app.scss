@@ -170,9 +170,10 @@ a::selection {
 .schedules_time {
 	font-size: 24px;
 	color: pink;
+	margin: 15px 0px;
 }
 .schedules_rules {
-	/*color: Lightgreen;*/
+	margin: 15px 0px;
 }
 .maps {
 	color: Lightyellow;
@@ -180,7 +181,7 @@ a::selection {
 .maps_name{
 	position: absolute;
     bottom: 0;
-    padding: 0px 10px;
+    padding: 10px 15px;
     color: #fff;
     width: 100%;
     background: rgb(0,0,0,0.6);
@@ -196,7 +197,8 @@ a::selection {
 
 .accordion-button {
 	background-color: #000;
-	color: #ddd;
+	color: IndianRed !important;
+	font-size: 24px;
 }
 .accordion-button:not(.collapsed) {
 	background-color: #000;

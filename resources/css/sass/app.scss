@@ -174,13 +174,23 @@ a::selection {
 .schedules_rules {
 	/*color: Lightgreen;*/
 }
-.schedules_maps {
+.maps {
 	color: Lightyellow;
 }
-.schedules_maps_image {
-	padding-bottom: 20px;
+.maps_name{
+	position: absolute;
+    bottom: 0;
+    padding: 0px 10px;
+    color: #fff;
+    width: 100%;
+    background: rgb(0,0,0,0.6);
 }
-.schedules_maps_image img {
+.maps_image {
+	position: relative;
+	margin-bottom: 20px;
+
+}
+.maps_image img {
 	width: 100%;
 }
 

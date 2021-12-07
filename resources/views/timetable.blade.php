@@ -42,21 +42,19 @@ function modesCompare($a, $b){
 						<?php echo $rank_modes_translate[$slot->rule]['name'];?>
 					</div>
 
-					<div class="schedules_maps">
-						<div class="schedules_maps_a">
-							<?php echo nl2br($maps[$slot->stage_a]['name']);?>
-
-						</div>
-						<div class="schedules_maps_image">
+					<div class="maps">
+						<div class="maps_image">
+							<div class="maps_name">
+								<?php echo nl2br($maps[$slot->stage_a]['name']);?>
+							</div>
 							<img src="{{URL::asset('/images/splatoon2')}}/<?=$maps[$slot->stage_a]['image']?>" />
-							
 						</div>
-						<div class="schedules_maps_b">
-							<?php echo nl2br($maps[$slot->stage_b]['name']);?>
-						</div>
-						<div class="schedules_maps_image">
-							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$slot->stage_b]['image']?>" />
 
+						<div class="maps_image">
+							<div class="maps_name">
+								<?php echo nl2br($maps[$slot->stage_b]['name']);?>
+							</div>
+							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$slot->stage_b]['image']?>" />
 						</div>
 					</div>
 				</div>
@@ -84,21 +82,19 @@ function modesCompare($a, $b){
 								<?php echo $rank_modes_translate[$slot->rule]['name'];?>
 							</div>
 
-							<div class="schedules_maps">
-								<div class="schedules_maps_a">
-									<?php echo nl2br($maps[$slot->stage_a]['name']);?>
-
-								</div>
-								<div class="schedules_maps_image">
+							<div class="maps">
+								<div class="maps_image">
+									<div class="maps_name">
+										<?php echo nl2br($maps[$slot->stage_a]['name']);?>
+									</div>
 									<img src="{{URL::asset('/images/splatoon2')}}/<?=$maps[$slot->stage_a]['image']?>" />
-									
 								</div>
-								<div class="schedules_maps_b">
-									<?php echo nl2br($maps[$slot->stage_b]['name']);?>
-								</div>
-								<div class="schedules_maps_image">
-									<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$slot->stage_b]['image']?>" />
 
+								<div class="maps_image">
+									<div class="maps_name">
+										<?php echo nl2br($maps[$slot->stage_b]['name']);?>
+									</div>
+									<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$slot->stage_b]['image']?>" />
 								</div>
 							</div>
 						</div>

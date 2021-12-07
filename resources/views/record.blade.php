@@ -37,21 +37,19 @@ $data->uksort("modesCompare");
 						<?php echo $rank_modes_translate[$modes_data[$i]->rule->key]['name'];?>
 					</div>
 
-					<div class="schedules_maps">
-						<div class="schedules_maps_a">
-							<?php echo nl2br($maps[$modes_data[$i]->stage_a->id]['name']);?>
-
-						</div>
-						<div class="schedules_maps_image">
+					<div class="maps">
+						<div class="maps_image">
+							<div class="maps_name">
+								<?php echo nl2br($maps[$modes_data[$i]->stage_a->id]['name']);?>
+							</div>
 							<img src="{{URL::asset('/images/splatoon2')}}/<?=$maps[$modes_data[$i]->stage_a->id]['image']?>" />
-							
 						</div>
-						<div class="schedules_maps_b">
-							<?php echo nl2br($maps[$modes_data[$i]->stage_b->id]['name']);?>
-						</div>
-						<div class="schedules_maps_image">
-							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$modes_data[$i]->stage_b->id]['image']?>" />
 
+						<div class="maps_image">
+							<div class="maps_name">
+								<?php echo nl2br($maps[$modes_data[$i]->stage_b->id]['name']);?>
+							</div>
+							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$modes_data[$i]->stage_b->id]['image']?>" />
 						</div>
 					</div>
 				</div>

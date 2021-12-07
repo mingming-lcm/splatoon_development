@@ -130,12 +130,11 @@
 					</div>
 					
 					<div class="results_detail_item col-xs-12">
-						<div class="results_maps_name">
-							<?=$maps[$data->map_id]['name']?>
-						</div>
-						<div class="results_maps_image">
+						<div class="maps_image">
+							<div class="maps_name">
+								<?=$maps[$data->map_id]['name']?>
+							</div>
 							<img src="{{URL::asset('/images/splatoon2/')}}/<?=$maps[$data->map_id]['image']?>" />
-
 						</div>
 					</div>
 

@@ -218,15 +218,33 @@ class DatabaseSeeder extends Seeder
 		$galleries = [
 			[
 				"id" => "1",
-				"title" => "面面(沒穿褲子ver.)",
-				"description"=>"褲子只是藏起來而已！",
-				"credit"=>"辣啦",
-				"credit_content"=>"https://twitter.com/yunxd",
-				"filename"=>"mingming_by_lala.png",
+				"title" => "面面（水手服草稿ver.）",
+				"description"=>"枝生第一張被畫的圖～",
+				"credit"=>"白白",
+				"credit_content"=> null,
+				"filename"=>"mingming_by_shiro.jpg",
 				"likes"=>0,
 			] ,
 			[
 				"id" => "2",
+				"title" => "面面（高等身ver.）",
+				"description"=>"第一張高等身大圖～",
+				"credit"=>"Laser",
+				"credit_content"=>"https://twitter.com/LWY69805700",
+				"filename"=>"mingming_by_laser.jpg",
+				"likes"=>0,
+			] ,
+			[
+				"id" => "3",
+				"title" => "面面（爆炸甜點班ver.）",
+				"description"=>"被z醬加到甜點上辣～",
+				"credit"=>"Z醬",
+				"credit_content"=>"https://twitter.com/zx14996630",
+				"filename"=>"mingming_by_z.jpg",
+				"likes"=>0,
+			] ,
+			[
+				"id" => "4",
 				"title" => "面面 & 桃桃",
 				"description"=>"第一張畫在一起的圖～",
 				"credit"=>"Laser",
@@ -234,7 +252,24 @@ class DatabaseSeeder extends Seeder
 				"filename"=>"mingming&taltal_by_laser.jpg",
 				"likes"=>0,
 			] ,
-			
+			[
+				"id" => "5",
+				"title" => "面面（貓貓圍圈圈ver.）",
+				"description"=>"第一張Mii畫我的圖～",
+				"credit"=>"Mii",
+				"credit_content"=>"https://twitter.com/mii28174050",
+				"filename"=>"mingming_by_mii.png",
+				"likes"=>0,
+			] ,
+			[
+				"id" => "6",
+				"title" => "面面（沒穿褲子ver.）",
+				"description"=>"褲子只是藏起來而已！",
+				"credit"=>"辣啦",
+				"credit_content"=>"https://twitter.com/yunxd",
+				"filename"=>"mingming_by_lala.png",
+				"likes"=>0,
+			] ,
 		];
 
 		foreach ($galleries as $key => $value) {

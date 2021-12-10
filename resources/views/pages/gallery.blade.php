@@ -25,7 +25,7 @@
                     <?= $image_item->description; ?>
                 </div>
                 <div class="item-credit">
-                    Credit By: <?= $image_item->credit; ?> <? if ($image_item->credit_content) { ?>(<a href="<?= $image_item->credit_content; ?>" target="_blank"><?= $image_item->credit_content; ?></a>)<?php } ?>
+                    Credit By: <?= $image_item->credit; ?> <?php if ($image_item->credit_content) { ?>(<a href="<?= $image_item->credit_content; ?>" target="_blank"><?= $image_item->credit_content; ?></a>)<?php } ?>
                 </div>
             </div>
         </div>

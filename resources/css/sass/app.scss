@@ -5,7 +5,9 @@
 
 @font-face {
 	font-family: "Splatoon Chinese";
-	src: url("../../fonts/SNsanafonmaruP.ttf");
+	src: url("../../fonts/SNsanafonmaruP.woff"),
+		 url("../../fonts/SplatoonChinese.ttf"),
+		 url("../../fonts/SNsanafonmaruP.ttf");
 }
 
 body {

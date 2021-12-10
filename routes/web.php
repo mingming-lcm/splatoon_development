@@ -28,6 +28,8 @@ Route::get('/record', 'RecordController@index')->name('record');
 Route::get('/result', 'ResultController@index')->name('result.index');
 Route::get('/result/{battle_number}', 'ResultController@detail')->name('result.detail');
 
+Route::get('/gallery', 'GalleryController@index')->name('gallery.index');
+
 Route::get('/update_api', 'HomeController@update_api')->name('update_api');
 
 #Route::get('/timetable', function () {

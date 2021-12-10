@@ -214,7 +214,24 @@ class DatabaseSeeder extends Seeder
 	        ]);
 		}
 
-    	
-        // \App\Models\User::factory(10)->create();
+
+		$rules = [
+			[
+				"id" => "1",
+				"title" => "Draw By LaLa",
+				"description"=>"Draw By LaLa",
+				"filename"=>"mingming_by_lala.png",
+				"likes"=>0,
+			] ,
+			[
+				"id" => "2",
+				"title" => "Draw By Laser",
+				"description"=>"Draw By Laser",
+				"filename"=>"mingming&taltal_by_laser.jpg",
+				"likes"=>0,
+			] ,
+			
+		];
+
     }
 }

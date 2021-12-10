@@ -242,6 +242,7 @@ class DatabaseSeeder extends Seeder
 	    		'title' => $value["title"],
 	    		'description' => $value["description"],
 	            'credit' => $value["credit"],
+	            'credit_content' => $value["credit_content"],
 	            'filename' => $value["filename"],
 	            'likes' => $value["likes"],
 	        ]);

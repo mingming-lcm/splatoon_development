@@ -15,5 +15,9 @@
         <a href="{{ route('result.index') }}" class="btn menu_item">
             Splatoon2 50場紀錄
         </a>
+        
+        <a href="{{ route('gallery.index') }}" class="btn menu_item">
+            面面圖庫
+        </a>
     </div>
 </div>

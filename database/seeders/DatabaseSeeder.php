@@ -220,6 +220,7 @@ class DatabaseSeeder extends Seeder
 				"id" => "1",
 				"title" => "Draw By LaLa",
 				"description"=>"Draw By LaLa",
+				"credit"=>"LaLa",
 				"filename"=>"mingming_by_lala.png",
 				"likes"=>0,
 			] ,
@@ -227,6 +228,7 @@ class DatabaseSeeder extends Seeder
 				"id" => "2",
 				"title" => "Draw By Laser",
 				"description"=>"Draw By Laser",
+				"credit"=>"Laser",
 				"filename"=>"mingming&taltal_by_laser.jpg",
 				"likes"=>0,
 			] ,
@@ -237,6 +239,7 @@ class DatabaseSeeder extends Seeder
 			DB::table('galleries')->insert([
 	    		'title' => $value["title"],
 	    		'description' => $value["description"],
+	            'credit' => $value["credit"],
 	            'filename' => $value["filename"],
 	            'likes' => $value["likes"],
 	        ]);

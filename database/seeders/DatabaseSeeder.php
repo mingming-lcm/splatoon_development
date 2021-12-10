@@ -215,7 +215,7 @@ class DatabaseSeeder extends Seeder
 		}
 
 
-		$rules = [
+		$galleries = [
 			[
 				"id" => "1",
 				"title" => "Draw By LaLa",
@@ -232,6 +232,16 @@ class DatabaseSeeder extends Seeder
 			] ,
 			
 		];
+
+		foreach ($galleries as $key => $value) {
+			DB::table('galleries')->insert([
+	    		'title' => $value["title"],
+	    		'description' => $value["description"],
+	            'filename' => $value["filename"],
+	            'likes' => $value["likes"],
+	        ]);
+		}
+
 
     }
 }

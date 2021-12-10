@@ -24,6 +24,9 @@
                 <div class="item-description">
                     <?= $image_item->description; ?>
                 </div>
+                <div class="item-credit">
+                    Credit By: <?= $image_item->credit; ?>
+                </div>
             </div>
         </div>
     <?php } ?>

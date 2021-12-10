@@ -15,7 +15,7 @@
     <?php foreach ($data as $image_item) { ?>
         <div class="gallery-item">
             <div class="item-image">
-                <img src="{{URL::asset('/images/splatoon2/')}}/<?= $image_item->filename; ?>" />
+                <img src="{{URL::asset('/images/splatoon2/gallery/')}}/<?= $image_item->filename; ?>" />
             </div>
             <div class="item-content">
                 <div class="item-title">
@@ -25,7 +25,7 @@
                     <?= $image_item->description; ?>
                 </div>
                 <div class="item-credit">
-                    Credit By: <?= $image_item->credit; ?>
+                    Credit By: <?= $image_item->credit; ?> (<a href="<?= $image_item->credit_content; ?>"><?= $image_item->credit_content; ?></a>)
                 </div>
             </div>
         </div>

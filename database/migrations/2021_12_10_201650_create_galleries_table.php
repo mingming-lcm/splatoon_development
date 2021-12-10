@@ -18,6 +18,7 @@ class CreateGalleriesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('credit');
+            $table->text('credit_content')->nullable();
             $table->string('filename');
             $table->integer('likes');
             $table->timestamps();

@@ -12,6 +12,6 @@ class GalleryController extends Controller
 {
     public function index(){
 		$data = Gallery::get();
-    	return view('gallery.index')->with(['data'=>$data]);
+    	return view('pages.gallery')->with(['data'=>$data]);
     }
 }

@@ -11,7 +11,7 @@
     面面圖庫
 </div>
 
-<div class="gallery">
+<div class="gallery-slider">
     <?php foreach ($data as $image_item) { ?>
         <div class="gallery-item">
             <div class="item-image">

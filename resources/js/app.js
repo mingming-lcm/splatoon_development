@@ -1,10 +1,10 @@
 // require('./bootstrap');
 require('./jquery-3.6.0.min.js');
-require('./bootstrap.bundle.min.js');
-require('./jquery.bxslider.min.js');
-
 import $ from './jquery-3.6.0.min.js';
 window.$ = window.jQuery = $;
+
+require('./bootstrap.bundle.min.js');
+require('./jquery.bxslider.min.js');
 
 $(document).ready(function () {
 	$('#schedules-table').collapse({

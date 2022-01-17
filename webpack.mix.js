@@ -15,9 +15,8 @@ const mix = require('laravel-mix');
 //     .postCss('resources/css/app.css', 'public/css', [
 //         //
 //     ]);
-mix.js('resources/js/jquery-3.6.0.min.js', 'public/js');
-mix.js('resources/js/bootstrap.bundle.min.js', 'public/js')
-    .postCss('resources/css/bootstrap.min.css', 'public/css', [
+mix.js('resources/js', 'public/js');
+mix.postCss('resources/css/bootstrap.min.css', 'public/css', [
         //
     ]);
 mix.copyDirectory('resources/images', 'public/images');

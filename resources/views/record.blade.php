@@ -22,7 +22,7 @@ $data->uksort("modesCompare");
 <div class="title">
 	Splatoon2 時間表
 </div>
-<div class="schedules_table">
+<div class="schedules-table">
 <?php foreach($data as $modes=>$modes_data){ ?>
 	<div class="schedules_column">
 		<div class="schedules_mode">

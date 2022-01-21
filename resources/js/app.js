@@ -17,6 +17,8 @@ $(document).ready(function () {
 		autoControls: true,
 		auto: true,
 		pager:false,
+		nextSelector: $('.slider-next'),
+		prevSelector: $('.slider-prev'),
 	});
 
 });

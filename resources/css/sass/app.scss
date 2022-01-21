@@ -348,10 +348,18 @@ results_rules {
 .slider-control{
 	position: absolute;
 	bottom: 0px;
+	width: 100%;
 	.slider-next,
 	.slider-prev{
 		position: relative;
 		top: 50%;
 		transform: translate(0, -50%);
+	}
+
+	.slider-next{
+		left: 15px;
+	}
+	.slider-prev{
+		right: 15px;
 	}
 }

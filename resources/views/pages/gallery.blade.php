@@ -30,10 +30,10 @@
             </div>
         </div>
     <?php } ?>
-    <div class="slider-control">
-        <div class="slider-next">Next</div>
-        <div class="slider-prev">Prev</div>
-    </div>
+</div>
+<div class="slider-control">
+    <div class="slider-next">Next</div>
+    <div class="slider-prev">Prev</div>
 </div>
 
 

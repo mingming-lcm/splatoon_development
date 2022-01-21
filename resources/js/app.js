@@ -11,10 +11,10 @@ $(document).ready(function () {
 		toggle: false
 	  });
 	$('.gallery-slider').bxSlider({
+		adaptiveHeight: true,
 		mode: 'fade',
 		captions: true,
 		randomStart: true,
-		// autoControls: true,
 		auto: true,
 		pagerSelector: $('.slider-pager'), 
 		nextSelector: $('.slider-next'),

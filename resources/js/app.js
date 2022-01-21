@@ -16,7 +16,6 @@ $(document).ready(function () {
 		randomStart: true,
 		// autoControls: true,
 		auto: true,
-		pagerType: 'short', 
 		pagerSelector: $('.slider-pager'), 
 		nextSelector: $('.slider-next'),
 		prevSelector: $('.slider-prev'),

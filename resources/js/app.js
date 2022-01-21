@@ -10,12 +10,13 @@ $(document).ready(function () {
 	$('#schedules-table').collapse({
 		toggle: false
 	  });
-	$('#gallery-slider').bxSlider({
+	$('.gallery-slider').bxSlider({
 		mode: 'fade',
 		captions: true,
 		randomStart: true,
-		autoControls: true,
+		// autoControls: true,
 		auto: true,
+		pagerType: 'short', 
 		pagerSelector: $('.slider-pager'), 
 		nextSelector: $('.slider-next'),
 		prevSelector: $('.slider-prev'),

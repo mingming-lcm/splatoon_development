@@ -315,28 +315,32 @@ results_rules {
 
 .gallery-container {
 	position: relative;
-	.gallery-item {
+
+	.gallery-slider {
 		border: 1px solid white;
-		padding: 15px;
 
-		.item-image {
+		.gallery-item {
 			padding: 15px;
-			text-align: center;
 
-			img {
-				width: 50%;
-			}
-		}
+			.item-image {
+				padding: 15px;
+				text-align: center;
 
-		.item-content {
-			padding: 15px;
-			text-align: center;
-
-			.item-title {
-				font-size: 24px;
+				img {
+					width: 50%;
+				}
 			}
 
-			.item-description {
+			.item-content {
+				padding: 15px;
+				text-align: center;
+
+				.item-title {
+					font-size: 24px;
+				}
+
+				.item-description {
+				}
 			}
 		}
 	}
@@ -346,7 +350,7 @@ results_rules {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	z-index: 1;
+	z-index: 60;
 
 	.slider-control {
 		position: relative;

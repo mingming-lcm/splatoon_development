@@ -29,6 +29,9 @@
     {{--bootstrap--}}
     <link href="{{ mix('css/bootstrap.min.css') }}" rel="stylesheet" crossorigin="anonymous">
 
+    {{--bxslider--}}
+    <link href="{{ mix('css/jquery.bxslider.css') }}" rel="stylesheet" crossorigin="anonymous">
+
 
     {{--Google Recaptcha--}}
     <!-- <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render={{ config('recaptcha.recaptcha_v3_site_key') }}"></script> -->

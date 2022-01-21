@@ -5,8 +5,7 @@
 
 @font-face {
 	font-family: "Splatoon Chinese";
-	src: url("../../fonts/SplatoonChinese.ttf"),
-		 url("../../fonts/SNsanafonmaruP.woff");
+	src: url("../../fonts/SplatoonChinese.ttf"), url("../../fonts/SNsanafonmaruP.woff");
 }
 
 body {
@@ -179,18 +178,17 @@ a::selection {
 .maps {
 	color: Lightyellow;
 }
-.maps_name{
+.maps_name {
 	position: absolute;
-    bottom: 0;
-    padding: 10px 15px;
-    color: #fff;
-    width: 100%;
-    background: rgb(0,0,0,0.6);
+	bottom: 0;
+	padding: 10px 15px;
+	color: #fff;
+	width: 100%;
+	background: rgb(0, 0, 0, 0.6);
 }
 .maps_image {
 	position: relative;
 	margin-bottom: 20px;
-
 }
 .maps_image img {
 	width: 100%;
@@ -261,11 +259,11 @@ a::selection {
 		height: 20px;
 
 		&.our_team_result {
-			background: radial-gradient(circle, rgba(236,9,170,1) 18%, rgba(158,5,139,1) 100%);
+			background: radial-gradient(circle, rgba(236, 9, 170, 1) 18%, rgba(158, 5, 139, 1) 100%);
 		}
 
 		&.other_team_result {
-			background: radial-gradient(circle, rgba(53,209,38,1) 18%, rgba(5,158,118,1) 100%);
+			background: radial-gradient(circle, rgba(53, 209, 38, 1) 18%, rgba(5, 158, 118, 1) 100%);
 		}
 	}
 }
@@ -315,51 +313,56 @@ results_rules {
 	}
 }
 
-
-
-
-.gallery-item{
-	border: 1px solid white;
-	padding: 15px;
-
-	.item-image{
+.gallery-container {
+	position: relative;
+	.gallery-item {
+		border: 1px solid white;
 		padding: 15px;
-		text-align: center;
 
-		img{
-			width: 50%;
-		}
-	}
+		.item-image {
+			padding: 15px;
+			text-align: center;
 
-	.item-content{
-		padding: 15px;
-		text-align: center;
-
-		.item-title{
-			font-size: 24px;
+			img {
+				width: 50%;
+			}
 		}
 
-		.item-description{
-			
+		.item-content {
+			padding: 15px;
+			text-align: center;
+
+			.item-title {
+				font-size: 24px;
+			}
+
+			.item-description {
+			}
 		}
 	}
 }
 
-.slider-control{
+.slider-container {
 	position: absolute;
-	bottom: 0px;
 	width: 100%;
-	.slider-next,
-	.slider-prev{
+	height: 100%;
+	z-index: 1;
+
+	.slider-control {
 		position: relative;
 		top: 50%;
 		transform: translate(0, -50%);
+
+		.slider-next {
+			left: 15px;
+		}
+		.slider-prev {
+			right: 15px;
+		}
 	}
 
-	.slider-next{
-		left: 15px;
-	}
-	.slider-prev{
-		right: 15px;
+	.slider-pager {
+		position: absolute;
+		bottom: 0px;
 	}
 }

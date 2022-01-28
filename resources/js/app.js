@@ -10,13 +10,15 @@ $(document).ready(function () {
 	$('#schedules-table').collapse({
 		toggle: false
 	  });
-	$('#gallery-slider').bxSlider({
+	$('.gallery-slider').bxSlider({
+		adaptiveHeight: true,
 		mode: 'fade',
 		captions: true,
 		randomStart: true,
-		autoControls: true,
 		auto: true,
-		pager:false,
+		pagerSelector: $('.slider-pager'), 
+		nextSelector: $('.slider-next'),
+		prevSelector: $('.slider-prev'),
 	});
 
 });

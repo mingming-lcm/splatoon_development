@@ -26,7 +26,7 @@ function modesCompare($a, $b){
 <div class="title">
 	Splatoon2 時間表
 </div>
-<div class="schedules_table">
+<div class="schedules-table">
 <?php foreach($modes_translate as $mode_key => $mode){ ?>
 	<div class="d-none d-lg-block">
 		<div class="schedules_column">
@@ -63,7 +63,7 @@ function modesCompare($a, $b){
 	</div>
 	<?php } ?>
 
-	<div class="d-lg-none accordion" id="schedules_table">
+	<div class="d-lg-none accordion" id="schedules-table">
 		<?php foreach($modes_translate as $mode_key => $mode){ ?>
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="heading_<?=$mode_key;?>">
@@ -71,7 +71,7 @@ function modesCompare($a, $b){
 					<?=$mode['name'];?>
 				</button>
 			</h2>
-			<div id="collapse_<?=$mode_key;?>" class="accordion-collapse collapse" aria-labelledby="heading_<?=$mode_key;?>" data-bs-parent="#schedules_table">
+			<div id="collapse_<?=$mode_key;?>" class="accordion-collapse collapse" aria-labelledby="heading_<?=$mode_key;?>" data-bs-parent="#schedules-table">
 				<div class="accordion-body">
 					<?php foreach(${$mode_key."_data"} as $key=>$slot){ ?>
 						<div class="schedules_item">

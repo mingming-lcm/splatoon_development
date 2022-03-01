@@ -57,40 +57,40 @@ class GetSplatoonApi extends Command
         //api links https://app.splatoon2.nintendo.net/api/results
 
         $medals = [
-			"gold_count" => [
-				"order" => 0,
-			] ,
-			"silver_count"=>[
-				"order" => 1,
-			] ,
-			"bronze_count" => [
-				"order" => 2,
-			] ,	
+            "gold_count" => [
+                "order" => 0,
+            ],
+            "silver_count" => [
+                "order" => 1,
+            ],
+            "bronze_count" => [
+                "order" => 2,
+            ],
             "no_medal_count" => [
-				"order" => 3,
-			] ,	
-		];
+                "order" => 3,
+            ],
+        ];
 
 
         $results = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results");
 
         foreach ($results->results as $key => $value) {
-            if(Result::getResultByBattleNumber($value->battle_number)){
+            if (Result::getResultByBattleNumber($value->battle_number)) {
                 continue;
-            }            
+            }
             $result = new Result();
 
             $result->battle_number = $value->battle_number;
             $result->start_time = $value->start_time;
             if (isset($value->end_time)) {
                 $result->end_time = $value->end_time;
-            }else{
+            } else {
                 $result->end_time = "";
             }
 
             if (isset($value->elapsed_time)) {
                 $result->elapsed_time = $value->elapsed_time;
-            }else{
+            } else {
                 $result->elapsed_time = 300;
             }
             $result->map_id = $value->stage->id;
@@ -133,10 +133,10 @@ class GetSplatoonApi extends Command
             if (isset($value->other_team_percentage)) {
                 $result->other_team_percentage = $value->other_team_percentage;
             }
-            
+
             $result->save();
 
-            $teammates_results = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results/".$value->battle_number);
+            $teammates_results = IksmSession::squidFishing("https://app.splatoon2.nintendo.net/api/results/" . $value->battle_number);
 
             $teammates_result = new TeammatesResult();
             $teammates_result->result_id = "";
@@ -151,7 +151,7 @@ class GetSplatoonApi extends Command
             $teammates_result->save();
 
 
-            for ($i=0; $i < count($teammates_results->my_team_members); $i++) { 
+            for ($i = 0; $i < count($teammates_results->my_team_members); $i++) {
                 // dump($teammates_results);
                 $teammates_result = new TeammatesResult();
                 $teammates_result->result_id = "";
@@ -166,7 +166,7 @@ class GetSplatoonApi extends Command
                 $teammates_result->save();
             }
 
-            for ($i=0; $i < count($teammates_results->other_team_members); $i++) { 
+            for ($i = 0; $i < count($teammates_results->other_team_members); $i++) {
                 $teammates_result = new TeammatesResult();
                 $teammates_result->result_id = "";
                 $teammates_result->battle_number = $teammates_results->battle_number;
@@ -179,7 +179,6 @@ class GetSplatoonApi extends Command
                 $teammates_result->game_paint_point = $teammates_results->other_team_members[$i]->game_paint_point;
                 $teammates_result->save();
             }
-
         }
 
 
@@ -187,9 +186,9 @@ class GetSplatoonApi extends Command
 
         foreach ($timetables as $mode => $timetable) {
             foreach ($timetable as $key => $slot) {
-                if(Timetable::checkTimetableExsist($slot->start_time, $slot->game_mode->key)){
+                if (Timetable::checkTimetableExsist($slot->start_time, $slot->game_mode->key)) {
                     continue;
-                } 
+                }
 
                 $timetable = new Timetable();
                 $timetable->start_time = $slot->start_time;
@@ -214,7 +213,7 @@ class GetSplatoonApi extends Command
         $my_records->player_type = $records->records->player->player_type->species;
         $my_records->max_league_point_pair = $records->records->player->max_league_point_pair;
         $my_records->max_league_point_team = $records->records->player->max_league_point_team;
-        
+
         $my_records->win_count = $records->records->win_count;
         $my_records->lose_count = $records->records->lose_count;
         $my_records->total_paint_point = $records->challenges->total_paint_point;
@@ -223,13 +222,14 @@ class GetSplatoonApi extends Command
         $my_records->save();
 
 
-        foreach($records->records->league_stats as $league_type => $medals_array ){
-            foreach($medals_array as $medals_type => $medals_count){
-                if(PlayerMedalsStatus::getMedalsByType( $league_type , substr($medals_type, 0, -6) )){
-                    continue;
-                }   
+        foreach ($records->records->league_stats as $league_type => $medals_array) {
+            foreach ($medals_array as $medals_type => $medals_count) {
+                if (PlayerMedalsStatus::getMedalsByType($league_type, substr($medals_type, 0, -6))) {
+                    $my_medals_records = PlayerMedalsStatus::getMedalsByType($league_type, substr($medals_type, 0, -6));
+                } else {
+                    $my_medals_records = new PlayerMedalsStatus();
+                }
 
-                $my_medals_records = new PlayerMedalsStatus();
                 $my_medals_records->player_id = $records->records->player->principal_id;
                 $my_medals_records->league_type = $league_type;
                 $my_medals_records->medals_type = substr($medals_type, 0, -6);
@@ -240,7 +240,5 @@ class GetSplatoonApi extends Command
         }
 
         Log::notice("API Command Done.");
-
     }
-
 }
